@@ -13,6 +13,7 @@ public class LaunchBall extends CommandBase {
   /**
    * Creates a new LaunchBall.
    */
+
   public LaunchBall() {
     // Use addRequirements() here to declare subsystem dependencies.
   }

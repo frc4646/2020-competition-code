@@ -15,6 +15,7 @@ public class FindTarget extends CommandBase {
    */
   public FindTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
+    //returns angle and distance to the target
   }
 
   // Called when the command is initially scheduled.

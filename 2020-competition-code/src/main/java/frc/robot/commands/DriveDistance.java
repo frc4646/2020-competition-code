@@ -13,8 +13,9 @@ public class DriveDistance extends CommandBase {
   /**
    * Creates a new DriveDistance.
    */
-  public DriveDistance() {
+  public DriveDistance(double inchesX, double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
+    // cartesian; positive x is to the right
   }
 
   // Called when the command is initially scheduled.

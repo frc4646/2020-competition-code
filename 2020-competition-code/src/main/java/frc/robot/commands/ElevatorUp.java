@@ -13,7 +13,7 @@ public class ElevatorUp extends CommandBase {
   /**
    * Creates a new ElevatorUp.
    */
-  public ElevatorUp() {
+  public ElevatorUp(double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

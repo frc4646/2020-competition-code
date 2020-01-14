@@ -13,7 +13,7 @@ public class FaceAngle extends CommandBase {
   /**
    * Creates a new FaceAngle.
    */
-  public FaceAngle() {
+  public FaceAngle(double degree) {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

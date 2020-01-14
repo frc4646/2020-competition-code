@@ -13,7 +13,7 @@ public class WinchPull extends CommandBase {
   /**
    * Creates a new WinchPull.
    */
-  public WinchPull() {
+  public WinchPull(double count) {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 

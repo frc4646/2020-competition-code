@@ -21,4 +21,8 @@ public final class Constants {
   public static final int frontRightDrivePort = 1; //Done
   public static final int backLeftDrivePort = 3; //Done
   public static final int backRightDrivePort = 0; //Done
+  public static final int intakePort = 0;
+  public static final int articulateIntakePort = 0;
+  public static final double sparkForwardMax = 1;
+  public static final double sparkReverseMax = -1;
 }

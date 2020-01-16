@@ -8,13 +8,40 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import edu.wpi.first.wpilibj.Spark;
+import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   /**
    * Creates a new Intake.
    */
+  Spark intakeSpark;
+  Spark articulateSpark;
+  double deploySpeed = 0.5;
+  double retractSpeed = 0.5;
+  double intakeSpeed = Constants.sparkForwardMax;
+  double outtakeSpeed = -0.8;
   public Intake() {
+    intakeSpark = new Spark(Constants.intakePort);
+    articulateSpark = new Spark(Constants.articulateIntakePort);
+  }
+  public void intakeBall() {
+    intakeSpark.set(intakeSpeed);
+  }
+  public void outtakeBall() {
+    intakeSpark.set(outtakeSpeed);
 
+  }
+  public void stopIntake() {
+    intakeSpark.set(0);
+  }
+  public void deployIntake() {
+    //just run it for 2 seconds
+    articulateSpark.set(deploySpeed);
+  }
+  public void retractIntake() {
+    //just run it for 2 seconds
+    articulateSpark.set(retractSpeed);
   }
 
   @Override

@@ -30,6 +30,9 @@ public class Launcher extends SubsystemBase {
   public void SpinUp() {
     launcherSpark.set(launchSpeed);
   }
+  public void StopLauncher() {
+    launcherSpark.set(0);
+  }
 
   public void FindTarget() {
     //uses pixy2 to find target, I don't know how to do that

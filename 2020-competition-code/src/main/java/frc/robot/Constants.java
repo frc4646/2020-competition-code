@@ -30,4 +30,13 @@ public final class Constants {
   public static final int elevator = 0;
   public static final int liftEncoderPort = 0;
   public static final int liftStringPotPin = 0;
+
+    //Conveyor
+  public static final int frontConveyorPort = 0;
+  public static final int rearConveyorPort = 0;
+  public static final int lim1Port = 0;
+  public static final int lim2Port = 0;
+  public static final int lim3Port = 0;
+  public static final int lim4Port = 0;
+  public static final int lim5Port = 0;
 }

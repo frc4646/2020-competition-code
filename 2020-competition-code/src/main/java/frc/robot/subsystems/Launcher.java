@@ -8,14 +8,34 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMax;
+
 
 public class Launcher extends SubsystemBase {
   /**
    * Creates a new Lawn Chair.
    */
+  CANSparkMax launcherSpark;
+
+  int deviceID;
+  CANSparkMaxLowLevel.MotorType type = CANSparkMaxLowLevel.MotorType.kBrushless;
+  double launchSpeed;
+  
   public Launcher() {
+    launcherSpark = new CANSparkMax(deviceID, type);
+    launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
 
   }
+  public void SpinUp() {
+    launcherSpark.set(launchSpeed);
+  }
+
+  public void FindTarget() {
+    //uses pixy2 to find target, I don't know how to do that
+  }
+
+
 
   @Override
   public void periodic() {

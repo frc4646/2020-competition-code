@@ -33,6 +33,7 @@ public class Climber extends SubsystemBase {
     liftEncoderPin = new AnalogInput(Constants.liftEncoderPort);
     liftStringPotPin = new AnalogInput(Constants.liftStringPotPin);
 
+  
 
   }
 
@@ -40,4 +41,23 @@ public class Climber extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+
+  public void ElevatorTeleOp() {
+    elevatorSpark.set(0.5);
+  }
+
+  public void WinchTeleOp() {
+    winchSpark1.set(0.5);
+    winchSpark2.set(0.5);
+  }
+
+  public void ElevatorUp(double inchesY) {
+    elevatorSpark.set(0.5);
+  }
+
+  public void WinchPull(double count) {
+    //winchSpark1.set(speed);
+    //winchSpark2.set(speed);
+  }
+
 }

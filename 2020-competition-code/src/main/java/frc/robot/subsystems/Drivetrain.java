@@ -8,9 +8,11 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import frc.robot.commands.DriveTeleOp;
 import frc.robot.Constants;
 
@@ -34,13 +36,11 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.setInverted(false);
     backLeftDrive.setInverted(true);
     backRightDrive.setInverted(false);
-
-    
   }
 
   @Override
-  public void initDefaultCommand() 
-  {
+  public void periodic() {
+    // This method will be called once per scheduler run
     setDefaultCommand(new DriveTeleOp());
   }
 
@@ -50,10 +50,5 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.set(ControlMode.PercentOutput, rightSpeed);
     backLeftDrive.set(ControlMode.PercentOutput, leftSpeed);
     backRightDrive.set(ControlMode.PercentOutput, rightSpeed);
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
   }
 }

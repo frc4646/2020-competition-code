@@ -29,7 +29,7 @@ public class Drivetrain extends SubsystemBase {
   public Drivetrain() {
     frontLeftDrive = new TalonSRX(Constants.frontLeftDrivePort);
     frontRightDrive = new TalonSRX(Constants.frontRightDrivePort);
-    backLeftDrive = new VictorSPX(Constants.backLeftDrivePort);
+    backLeftDrive = new VictorSPX(Constants.backLeftDrivePort); // ROUGE VICTOR
     backRightDrive = new VictorSPX(Constants.backRightDrivePort);
 
     frontLeftDrive.setInverted(true);

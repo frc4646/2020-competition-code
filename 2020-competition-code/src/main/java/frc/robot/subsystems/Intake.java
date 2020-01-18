@@ -44,26 +44,26 @@ public class Intake extends SubsystemBase {
     
   }
 
-  public void intakeBall() {
+  public void IntakeBall() {
     intakeSpark.set(intakeSpeed);
   }
 
-  public void outtakeBall() {
+  public void OuttakeBall() {
     intakeSpark.set(outtakeSpeed);
   }
   
-  public void stopIntake() {
+  public void StopIntake() {
     intakeSpark.set(0);
   }
 
-  public void deployIntake() {
+  public void DeployIntake() {
     //just run it for 2 seconds
     articulateSpark.set(deploySpeed);
     Timer.delay(deploySeconds);
     articulateSpark.set(0);
   }
 
-  public void retractIntake() {
+  public void RetractIntake() {
     //just run it for 2 seconds
     articulateSpark.set(retractSpeed);
     Timer.delay(retractSeconds);

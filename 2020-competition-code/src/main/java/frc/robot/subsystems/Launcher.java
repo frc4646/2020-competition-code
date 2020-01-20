@@ -105,7 +105,7 @@ public class Launcher extends SubsystemBase {
     y = tableY.getDouble(0.0);
     width = tableWidth.getDouble(0.0);
     hight = tableHight.getDouble(0.0);
-    angle = tableAngle.getDouble(0.0);
+    angle = tableAngle.getDouble(0.0);  
  }
 
   public void SpinUp() {

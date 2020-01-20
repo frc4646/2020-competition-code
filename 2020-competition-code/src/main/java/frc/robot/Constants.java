@@ -33,8 +33,12 @@ public final class Constants {
   public static final int winch1 = 0;
   public static final int winch2 = 0;
   public static final int elevator = 0;
-  public static final int liftEncoderPort = 0;
   public static final int liftStringPotPin = 0;
+  public static final double MAX_VALUE = 0;
+  public static final double MIN_VALUE = 0;
+  public static final double MAX_HEIGHT = 0;
+  public static final double MIN_HEIGHT = 0;
+
 
       //Conveyor
   public static final int frontConveyorPort = 0;

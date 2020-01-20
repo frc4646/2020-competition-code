@@ -40,10 +40,10 @@ public class Launcher extends SubsystemBase {
   NetworkTableEntry tableX;
   NetworkTableEntry tableY;
   NetworkTableEntry tableWidth;
-  NetworkTableEntry tableHight;
+  NetworkTableEntry tableHeight;
   NetworkTableEntry tableAngle;
 
-  double x, y, width, hight, angle;
+  double x, y, width, height, angle;
 
   
   
@@ -63,7 +63,7 @@ public class Launcher extends SubsystemBase {
     tableX = pixyTable.getEntry("x");
     tableY = pixyTable.getEntry("y");
     tableWidth = pixyTable.getEntry("width");
-    tableHight = pixyTable.getEntry("hight");
+    tableHeight = pixyTable.getEntry("height");
     tableAngle = pixyTable.getEntry("angle");
 
 
@@ -84,8 +84,8 @@ public class Launcher extends SubsystemBase {
       System.out.println("Width changed value: " + value.getValue());
     }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    pixyTable.addEntryListener("hight", (table, key, entry, value, flags) -> {
-      System.out.println("Hight changed value: " + value.getValue());
+    pixyTable.addEntryListener("height", (table, key, entry, value, flags) -> {
+      System.out.println("Height changed value: " + value.getValue());
     }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
     pixyTable.addEntryListener("angle", (table, key, entry, value, flags) -> {
@@ -104,7 +104,7 @@ public class Launcher extends SubsystemBase {
     x = tableX.getDouble(0.0);
     y = tableY.getDouble(0.0);
     width = tableWidth.getDouble(0.0);
-    hight = tableHight.getDouble(0.0);
+    height = tableHeight.getDouble(0.0);
     angle = tableAngle.getDouble(0.0);  
  }
 

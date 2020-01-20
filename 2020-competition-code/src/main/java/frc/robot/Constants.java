@@ -31,7 +31,7 @@ public final class Constants {
   public static final int liftEncoderPort = 0;
   public static final int liftStringPotPin = 0;
 
-    //Conveyor
+      //Conveyor
   public static final int frontConveyorPort = 0;
   public static final int rearConveyorPort = 0;
   public static final int lim1Port = 0;
@@ -39,4 +39,10 @@ public final class Constants {
   public static final int lim3Port = 0;
   public static final int lim4Port = 0;
   public static final int lim5Port = 0;
+
+
+      //Joysticks
+  public static final int leftJoyPort = 0;
+  public static final int rightJoyPort = 1;
+  public static final int mechJoyPort = 2;
 }

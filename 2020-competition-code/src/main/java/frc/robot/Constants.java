@@ -23,6 +23,11 @@ public final class Constants {
   public static final int backRightDrivePort = 0; 
   public static final int intakePort = 0;
   public static final int articulateIntakePort = 0;
+  public static final int leftEncoderPort1 = 0;
+  public static final int leftEncoderPort2 = 0;
+  public static final int rightEncoderPort1 = 0;
+  public static final int rightEncoderPort2 = 0;
+  
 
       //Climber
   public static final int winch1 = 0;

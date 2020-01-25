@@ -23,15 +23,24 @@ public final class Constants {
   public static final int backRightDrivePort = 0; 
   public static final int intakePort = 0;
   public static final int articulateIntakePort = 0;
+  public static final int leftEncoderPort1 = 0;
+  public static final int leftEncoderPort2 = 0;
+  public static final int rightEncoderPort1 = 0;
+  public static final int rightEncoderPort2 = 0;
+  
 
       //Climber
   public static final int winch1 = 0;
   public static final int winch2 = 0;
   public static final int elevator = 0;
-  public static final int liftEncoderPort = 0;
   public static final int liftStringPotPin = 0;
+  public static final double MAX_VALUE = 0;
+  public static final double MIN_VALUE = 0;
+  public static final double MAX_HEIGHT = 0;
+  public static final double MIN_HEIGHT = 0;
 
-    //Conveyor
+
+      //Conveyor
   public static final int frontConveyorPort = 0;
   public static final int rearConveyorPort = 0;
   public static final int lim1Port = 0;
@@ -39,4 +48,10 @@ public final class Constants {
   public static final int lim3Port = 0;
   public static final int lim4Port = 0;
   public static final int lim5Port = 0;
+
+
+      //Joysticks
+  public static final int leftJoyPort = 0;
+  public static final int rightJoyPort = 1;
+  public static final int mechJoyPort = 2;
 }

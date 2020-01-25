@@ -7,14 +7,17 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
-import frc.robot.commands.DriveTeleOp;
+import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.interfaces.Gyro;
+import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+import frc.robot.commands.DriveTeleOp;
+import com.analog.adis16448.frc.ADIS16448_IMU;
+import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -23,19 +26,32 @@ public class Drivetrain extends SubsystemBase {
   private final VictorSPX backLeftDrive;
   private final VictorSPX backRightDrive;
 
+  private final Encoder rightEncoder;
+  private final Encoder leftEncoder;
+
+  private final int encoderCountsPerInch;
+  private final ADIS16448_IMU gyro;
+
   /**
    * Creates a new Drivetrain.
    */
   public Drivetrain() {
     frontLeftDrive = new TalonSRX(Constants.frontLeftDrivePort);
     frontRightDrive = new TalonSRX(Constants.frontRightDrivePort);
-    backLeftDrive = new VictorSPX(Constants.backLeftDrivePort); // ROUGE VICTOR
+    backLeftDrive = new VictorSPX(Constants.backLeftDrivePort);
     backRightDrive = new VictorSPX(Constants.backRightDrivePort);
+
+    rightEncoder = new Encoder(Constants.rightEncoderPort1, Constants.rightEncoderPort2);
+    leftEncoder = new Encoder(Constants.leftEncoderPort1, Constants.leftEncoderPort2);
 
     frontLeftDrive.setInverted(true);
     frontRightDrive.setInverted(false);
     backLeftDrive.setInverted(true);
     backRightDrive.setInverted(false);
+
+    encoderCountsPerInch = 0;
+
+    gyro = new ADIS16448_IMU(Axis.kX);
   }
 
   @Override
@@ -51,4 +67,21 @@ public class Drivetrain extends SubsystemBase {
     backLeftDrive.set(ControlMode.PercentOutput, leftSpeed);
     backRightDrive.set(ControlMode.PercentOutput, rightSpeed);
   }
+
+  public void resetEncoders(){
+    leftEncoder.reset();
+    rightEncoder.reset();
+  }
+
+  public double[] getDriveEncoderDistance(){
+    return new double[] {leftEncoder.get() / encoderCountsPerInch, rightEncoder.get() / encoderCountsPerInch};
+  }
+
+  public void resetGyro(){
+    gyro.calibrate();
+  }
+  public double getAngle(){
+    return gyro.getAngle();
+  }
+
 }

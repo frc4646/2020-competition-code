@@ -10,7 +10,7 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ElevatorUp extends CommandBase {
+public class ElevateToHeight extends CommandBase {
   /**
    * Creates a new ElevatorUp.
    */
@@ -18,7 +18,7 @@ public class ElevatorUp extends CommandBase {
   private double speed;
   private double tolerance;
 
-  public ElevatorUp(double inchesY) {
+  public ElevateToHeight(double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_climber);
     wantedHeight = inchesY;

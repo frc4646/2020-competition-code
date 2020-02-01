@@ -45,11 +45,11 @@ public class Launcher extends SubsystemBase {
   NetworkTableEntry tableY;
   NetworkTableEntry tableWidth;
   NetworkTableEntry tableHeight;
+  NetworkTableEntry tableAge;
+  NetworkTableEntry tableVisible;
 
-  double x, y, width, height;
-
-  
-  
+  int x, y, width, height, age;
+  boolean isBlockVisible;
 
   public Launcher() {
     launcherSpark = new CANSparkMax(deviceID, type);
@@ -70,8 +70,13 @@ public class Launcher extends SubsystemBase {
     tableY = pixyTable.getEntry("y");
     tableWidth = pixyTable.getEntry("width");
     tableHeight = pixyTable.getEntry("height");
+    tableAge = pixyTable.getEntry("age");
+    tableVisible = pixyTable.getEntry("visible");
+  }
 
-
+  @Override
+  public void periodic() {
+    // This method will be called once per scheduler run
   }
 
   public void run() {
@@ -93,6 +98,13 @@ public class Launcher extends SubsystemBase {
       System.out.println("Height changed value: " + value.getValue());
     }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
+    pixyTable.addEntryListener("age", (table, key, entry, value, flags) -> {
+      System.out.println("Age changed value: " + value.getValue());
+    }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
+
+    pixyTable.addEntryListener("visible", (table, key, entry, value, flags) -> {
+      System.out.println("Visible changed value: " + value.getValue());
+    }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
     try {
        Thread.sleep(10000);
@@ -102,10 +114,12 @@ public class Launcher extends SubsystemBase {
        return;
     }
 
-    x = tableX.getDouble(0.0);
-    y = tableY.getDouble(0.0);
-    width = tableWidth.getDouble(0.0);
-    height = tableHeight.getDouble(0.0);  
+    x = (int)tableX.getNumber(0);
+    y = tableY.getNumber(0);
+    width = tableWidth.getNumber(0);
+    height = tableHeight.getNumber(0); 
+    age = tableAge.getNumber(0);
+    isBlockVisible = tableAge.getBoolean(false);
  }
 
   public void SpinUp() {
@@ -115,19 +129,6 @@ public class Launcher extends SubsystemBase {
     launcherSpark.set(0);
   }
 
-  public void FindTarget() {
-    //uses pixy2 to find target, I don't know how to do that
-  }
-
-  public double[] getValues(){
-    double[] values = {x, y, width, height};
-    return values;
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-  }
 
   public boolean isBallInLauncher(){
     return opticTrigger.getTriggerState();
@@ -136,5 +137,34 @@ public class Launcher extends SubsystemBase {
   public void setServos(double servoPan, double servoTilt) {
     pan.set(servoPan);
     tilt.set(servoTilt);
+  }
+
+  public int[] getValues(){
+    int[] values = {x, y, width, height, age};
+    return values;
+  }
+
+  public int[] getPos()
+  {
+    int[] pos = new int[]{x, y};
+    return pos;
+  }
+
+  public int[] getSize()
+  {
+    int[] size = new int[]{width, height};
+    return size;
+  }
+
+  public int getAge()
+  {
+    return age;
+  }
+
+  /**
+   * @return the isBlockVisible
+   */
+  public boolean isBlockVisible() {
+    return isBlockVisible;
   }
 }

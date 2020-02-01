@@ -34,6 +34,7 @@ public class Climber extends SubsystemBase {
    public final double HOLD_POWER = 0;
    public final double UP_POWER = 0;
    public final double DOWN_POWER = 0;
+   public final double WINCH_POWER = 0;
   
 
   public Climber() {
@@ -69,8 +70,8 @@ public class Climber extends SubsystemBase {
   }
 
   public void WinchPull(double count) {
-    //winchSpark1.set(speed);
-    //winchSpark2.set(speed);
+    winchSpark1.set(WINCH_POWER);
+    winchSpark2.set(WINCH_POWER);
   }
 
   public double GetLiftHeight() {

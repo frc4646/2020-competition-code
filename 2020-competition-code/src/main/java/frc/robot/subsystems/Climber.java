@@ -26,6 +26,14 @@ public class Climber extends SubsystemBase {
    Encoder winchEncoder1;
    Encoder winchEncoder2;
    AnalogInput liftStringPotPin;
+
+   public final double MAX_VALUE = 0;
+   public final double MIN_VALUE = 0;
+   public final double MAX_HEIGHT = 0;
+   public final double MIN_HEIGHT = 0;
+   public final double HOLD_POWER = 0;
+   public final double UP_POWER = 0;
+   public final double DOWN_POWER = 0;
   
 
   public Climber() {
@@ -53,8 +61,11 @@ public class Climber extends SubsystemBase {
     winchSpark2.set(0.5);
   }
 
-  public void ElevatorUp(double inchesY) {
-    elevatorSpark.set(0.5);
+  public void ElevatorUp(double speed) {
+    elevatorSpark.set(speed);
+  }
+  public void HoldHeight() {
+    elevatorSpark.set(HOLD_POWER);
   }
 
   public void WinchPull(double count) {
@@ -64,8 +75,8 @@ public class Climber extends SubsystemBase {
 
   public double GetLiftHeight() {
     double pinVoltage = liftStringPotPin.getVoltage();
-    double m = (Constants.MIN_HEIGHT - Constants.MAX_HEIGHT) / (double)(Constants.MIN_VALUE - Constants.MAX_VALUE);
-    double b = Constants.MIN_HEIGHT - ((Constants.MIN_VALUE)*(m));
+    double m = (MIN_HEIGHT - MAX_HEIGHT) / (double)(MIN_VALUE - MAX_VALUE);
+    double b = MIN_HEIGHT - ((MIN_VALUE)*(m));
     double height = ((m)*(pinVoltage)) + b;
     return height;
   }

@@ -10,24 +10,27 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ForwardConveyer extends CommandBase {
+public class IndexOne extends CommandBase {
   /**
-   * Creates a new ForwardConveyer.
+   * Creates a new IndexOne.
    */
-  public ForwardConveyer() {
+  int currentBalls;
+  public IndexOne() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_conveyor);
+    currentBalls = Robot.m_conveyor.GetBallsStored();
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_conveyor.UpConveyor();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_conveyor.UpConveyor();
+
   }
 
   // Called once the command ends or is interrupted.
@@ -39,6 +42,9 @@ public class ForwardConveyer extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (Robot.m_conveyor.GetBallsStored() == (currentBalls + 1)) {
+      return true;
+    }
     return false;
   }
 }

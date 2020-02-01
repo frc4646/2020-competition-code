@@ -44,6 +44,11 @@ public class Conveyor extends SubsystemBase {
     rearConveyor.set(conveyorDownSpeed);
   }
 
+  public void StopConveyor() {
+    frontConveyor.set(0);
+    rearConveyor.set(0);
+  }
+
   public int GetBallsStored() {
     if (lim5.get()) {
       return 5;

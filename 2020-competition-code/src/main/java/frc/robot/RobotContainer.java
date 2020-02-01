@@ -15,7 +15,7 @@ import frc.robot.commands.ForwardConveyer;
 import frc.robot.commands.ReverseConveyer;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
-import frc.robot.commands.LaunchBall;
+import frc.robot.commands.SpinLauncher;
 import frc.robot.commands.WinchPull;
 
 import edu.wpi.first.wpilibj.Joystick;

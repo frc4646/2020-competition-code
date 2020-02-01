@@ -39,8 +39,10 @@ public final class Constants {
   public static final int winch2EncoderPort1 = 0;
   public static final int winch2EncoderPort2 = 0;
 
+      //Launcher
 
-
+  public static final int PAN_PORT = 0;
+  public static final int TIlT_PORT = 0;
 
       //Conveyor
   public static final int frontConveyorPort = 0;

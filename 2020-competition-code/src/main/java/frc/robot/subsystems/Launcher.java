@@ -9,7 +9,9 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogTrigger;
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.CANSparkMax;
 
@@ -24,6 +26,8 @@ public class Launcher extends SubsystemBase {
    * Creates a new Lawn Chair.
    */
   CANSparkMax launcherSpark;
+
+  Servo pan, tilt;
 
   int deviceID;
   CANSparkMaxLowLevel.MotorType type = CANSparkMaxLowLevel.MotorType.kBrushless;
@@ -41,9 +45,8 @@ public class Launcher extends SubsystemBase {
   NetworkTableEntry tableY;
   NetworkTableEntry tableWidth;
   NetworkTableEntry tableHeight;
-  NetworkTableEntry tableAngle;
 
-  double x, y, width, height, angle;
+  double x, y, width, height;
 
   
   
@@ -55,6 +58,9 @@ public class Launcher extends SubsystemBase {
     opticInput = new AnalogInput(1);
     opticTrigger = new AnalogTrigger(opticInput);
 
+    pan = new Servo(0);
+    tilt = new Servo(1);
+
     opticTrigger.setLimitsVoltage(disableTrigger, enableTrigger);
 
     pixyInst = NetworkTableInstance.getDefault();
@@ -64,7 +70,6 @@ public class Launcher extends SubsystemBase {
     tableY = pixyTable.getEntry("y");
     tableWidth = pixyTable.getEntry("width");
     tableHeight = pixyTable.getEntry("height");
-    tableAngle = pixyTable.getEntry("angle");
 
 
   }
@@ -88,10 +93,6 @@ public class Launcher extends SubsystemBase {
       System.out.println("Height changed value: " + value.getValue());
     }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
 
-    pixyTable.addEntryListener("angle", (table, key, entry, value, flags) -> {
-      System.out.println("Angle changed value: " + value.getValue());
-    }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
-
 
     try {
        Thread.sleep(10000);
@@ -104,8 +105,7 @@ public class Launcher extends SubsystemBase {
     x = tableX.getDouble(0.0);
     y = tableY.getDouble(0.0);
     width = tableWidth.getDouble(0.0);
-    height = tableHeight.getDouble(0.0);
-    angle = tableAngle.getDouble(0.0);  
+    height = tableHeight.getDouble(0.0);  
  }
 
   public void SpinUp() {
@@ -119,7 +119,10 @@ public class Launcher extends SubsystemBase {
     //uses pixy2 to find target, I don't know how to do that
   }
 
-
+  public double[] getValues(){
+    double Values[] = {x, y, width, height};
+    return Values;
+  }
 
   @Override
   public void periodic() {

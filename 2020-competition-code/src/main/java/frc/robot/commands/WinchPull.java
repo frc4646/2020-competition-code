@@ -14,32 +14,39 @@ public class WinchPull extends CommandBase {
   /**
    * Creates a new WinchPull.
    */
+  private double targetCounts;
 
   public WinchPull(double count) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_climber);
+    targetCounts = count;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_climber.WinchPull();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-   // Robot.m_climber.WinchPull();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-
+    Robot.m_climber.winchStop();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if((Robot.m_climber.winchEncoder1.get() >= targetCounts) 
+    || (Robot.m_climber.winchEncoder2.get() >= targetCounts)) {
+      return true;
+    }
+  
     return false;
   }
 }

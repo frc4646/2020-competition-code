@@ -23,8 +23,8 @@ public class Climber extends SubsystemBase {
    Spark winchSpark2;
    Spark elevatorSpark;
    
-   Encoder winchEncoder1;
-   Encoder winchEncoder2;
+   public Encoder winchEncoder1;
+   public Encoder winchEncoder2;
    AnalogInput liftStringPotPin;
 
    public final double MAX_VALUE = 0;
@@ -35,16 +35,16 @@ public class Climber extends SubsystemBase {
    public final double UP_POWER = 0;
    public final double DOWN_POWER = 0;
    public final double WINCH_POWER = 0;
-  
 
   public Climber() {
-    winchSpark1 = new Spark(Constants.winch1);
-    winchSpark2 = new Spark(Constants.winch2);
-    elevatorSpark = new Spark(Constants.elevator);
+    winchSpark1 = new Spark(Constants.winch1Spark);
+    winchSpark2 = new Spark(Constants.winch2Spark);
+    elevatorSpark = new Spark(Constants.elevatorSpark);
     
     liftStringPotPin = new AnalogInput(Constants.liftStringPotPin);
 
-  
+    winchEncoder1 = new Encoder(Constants.winch1EncoderPort1, Constants.winch1EncoderPort2);
+    winchEncoder2 = new Encoder(Constants.winch2EncoderPort1, Constants.winch2EncoderPort2);
 
   }
 
@@ -69,9 +69,14 @@ public class Climber extends SubsystemBase {
     elevatorSpark.set(HOLD_POWER);
   }
 
-  public void WinchPull(double count) {
+  public void WinchPull() {
     winchSpark1.set(WINCH_POWER);
     winchSpark2.set(WINCH_POWER);
+  }
+
+  public void winchStop() {
+    winchSpark1.set(0);
+    winchSpark2.set(0);
   }
 
   public double GetLiftHeight() {

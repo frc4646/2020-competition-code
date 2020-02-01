@@ -120,8 +120,8 @@ public class Launcher extends SubsystemBase {
   }
 
   public double[] getValues(){
-    double Values[] = {x, y, width, height};
-    return Values;
+    double[] values = {x, y, width, height};
+    return values;
   }
 
   @Override
@@ -129,7 +129,12 @@ public class Launcher extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
-  public boolean isBallInIntake(){
+  public boolean isBallInLauncher(){
     return opticTrigger.getTriggerState();
+  }
+
+  public void setServos(double servoPan, double servoTilt) {
+    pan.set(servoPan);
+    tilt.set(servoTilt);
   }
 }

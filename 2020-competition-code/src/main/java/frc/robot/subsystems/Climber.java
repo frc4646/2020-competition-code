@@ -57,6 +57,11 @@ public class Climber extends SubsystemBase {
     elevatorSpark.set(0.5);
   }
 
+  public void resetEncoders() {
+    winchEncoder1.reset();
+    winchEncoder2.reset();
+  }
+
   public void WinchTeleOp() {
     winchSpark1.set(0.5);
     winchSpark2.set(0.5);

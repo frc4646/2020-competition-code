@@ -25,6 +25,7 @@ public class WinchPull extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_climber.resetEncoders();
     Robot.m_climber.WinchPull();
   }
 

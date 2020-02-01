@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class ForwardConveyer extends CommandBase {
   /**
@@ -15,6 +16,7 @@ public class ForwardConveyer extends CommandBase {
    */
   public ForwardConveyer() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.m_conveyor);
   }
 
   // Called when the command is initially scheduled.

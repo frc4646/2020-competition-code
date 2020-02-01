@@ -20,7 +20,7 @@ public class ElevatorUp extends CommandBase {
 
   public ElevatorUp(double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
-
+    addRequirements(Robot.m_climber);
     wantedHeight = inchesY;
     speed = .5f;
     tolerance = .5f;

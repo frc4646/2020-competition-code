@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class LaunchBall extends CommandBase {
   /**
@@ -16,6 +17,7 @@ public class LaunchBall extends CommandBase {
 
   public LaunchBall() {
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.m_launcher);
   }
 
   // Called when the command is initially scheduled.

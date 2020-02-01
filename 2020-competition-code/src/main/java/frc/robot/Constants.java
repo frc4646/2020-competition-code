@@ -30,12 +30,19 @@ public final class Constants {
   
 
       //Climber
-  public static final int winch1 = 0;
-  public static final int winch2 = 0;
-  public static final int elevator = 0;
+  public static final int winch1Spark = 0;
+  public static final int winch2Spark = 0;
+  public static final int elevatorSpark = 0;
   public static final int liftStringPotPin = 0;
+  public static final int winch1EncoderPort1 = 0;
+  public static final int winch1EncoderPort2 = 0;
+  public static final int winch2EncoderPort1 = 0;
+  public static final int winch2EncoderPort2 = 0;
 
+      //Launcher
 
+  public static final int PAN_PORT = 0;
+  public static final int TIlT_PORT = 0;
 
       //Conveyor
   public static final int frontConveyorPort = 0;

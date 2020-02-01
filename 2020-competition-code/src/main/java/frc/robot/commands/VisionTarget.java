@@ -10,53 +10,51 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ElevatorUp extends CommandBase {
+public class VisionTarget extends CommandBase {
   /**
-   * Creates a new ElevatorUp.
+   * Creates a new VisionTarget.
    */
-  private double wantedHeight;
-  private double speed;
-  private double tolerance;
 
-  public ElevatorUp(double inchesY) {
+  double neutralPan = 0;
+  double neutralTilt = 0; 
+  double turnSpeed = 0.8;
+  double tolerance = 0.5;
+
+  public VisionTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
-
-    wantedHeight = inchesY;
-    speed = .5f;
-    tolerance = .5f;
+    addRequirements(Robot.m_launcher, Robot.m_drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.printf("Intialize%f\n", wantedHeight);
-    Robot.m_climber.ElevatorUp(speed);
-
-    if (Robot.m_climber.GetLiftHeight() < wantedHeight)
-    {
-      Robot.m_climber.ElevatorUp(Robot.m_climber.UP_POWER);
-    }
-    else
-    {
-      Robot.m_climber.ElevatorUp(Robot.m_climber.DOWN_POWER);
-    }
+    Robot.m_launcher.setServos(neutralPan, neutralTilt);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if (Robot.m_launcher.getValues()[0] < 0) { //assuming we've tracked the target. 0 is probably the central position.
+      Robot.m_drivetrain.driveByPercent(-turnSpeed, turnSpeed);
+    }
+    else if (Robot.m_launcher.getValues()[0] > 0) {
+      Robot.m_drivetrain.driveByPercent(turnSpeed, -turnSpeed);
+    }
+    Robot.m_launcher.run();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_climber.HoldHeight();
+    Robot.m_drivetrain.driveByPercent(0, 0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return ((wantedHeight + tolerance) >= Robot.m_climber.GetLiftHeight() &&
-    (wantedHeight - tolerance) <= Robot.m_climber.GetLiftHeight());
+    if (-tolerance <= Robot.m_launcher.getValues()[0] && Robot.m_launcher.getValues()[0] <= tolerance) {
+      return true;
+    }
+    return false;
   }
 }

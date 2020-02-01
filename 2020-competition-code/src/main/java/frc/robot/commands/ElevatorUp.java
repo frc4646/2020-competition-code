@@ -8,18 +8,38 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class ElevatorUp extends CommandBase {
   /**
    * Creates a new ElevatorUp.
    */
+  private double wantedHeight;
+  private double speed;
+  private double tolerance;
+
   public ElevatorUp(double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
+
+    wantedHeight = inchesY;
+    speed = .5f;
+    tolerance = .5f;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.printf("Intialize%f\n", wantedHeight);
+    Robot.m_climber.ElevatorUp(speed);
+
+    if (Robot.m_climber.GetLiftHeight() < wantedHeight)
+    {
+      Robot.m_climber.ElevatorUp(Robot.m_climber.UP_POWER);
+    }
+    else
+    {
+      Robot.m_climber.ElevatorUp(Robot.m_climber.DOWN_POWER);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -30,11 +50,13 @@ public class ElevatorUp extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_climber.HoldHeight();
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return ((wantedHeight + tolerance) >= Robot.m_climber.GetLiftHeight() &&
+    (wantedHeight - tolerance) <= Robot.m_climber.GetLiftHeight());
   }
 }

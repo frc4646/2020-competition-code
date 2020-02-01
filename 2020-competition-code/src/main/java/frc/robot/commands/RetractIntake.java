@@ -22,12 +22,13 @@ public class RetractIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_intake.RetractIntake();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_intake.RetractIntake();
+    
   }
 
   // Called once the command ends or is interrupted.

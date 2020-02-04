@@ -51,6 +51,8 @@ public class Launcher extends SubsystemBase {
   int x, y, width, height, age;
   boolean isBlockVisible;
 
+  int xMaxPos, yMaxPos, xMidPos, yMidPos;
+
   public Launcher() {
     launcherSpark = new CANSparkMax(deviceID, type);
     launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
@@ -72,6 +74,12 @@ public class Launcher extends SubsystemBase {
     tableHeight = pixyTable.getEntry("height");
     tableAge = pixyTable.getEntry("age");
     tableVisible = pixyTable.getEntry("visible");
+
+    xMaxPos = 315;
+    yMaxPos = 207;
+    xMidPos = xMaxPos/2;
+    yMidPos = yMaxPos/2;
+
   }
 
   @Override

@@ -8,19 +8,39 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Robot;
 
 public class FindTarget extends CommandBase {
   /**
    * Creates a new FindTarget.
    */
+
+  double neutralPan;
+  double neutralTilt; 
+  double turnSpeed;
+
   public FindTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
-    //returns angle and distance to the target
+    addRequirements(Robot.m_launcher);
+
+    neutralPan = 90;
+    neutralTilt = 90; //Placeholder
+    turnSpeed = 0.8;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_launcher.setServos(neutralPan, neutralTilt);
+
+    // While the target is not being tracked, pan the Pixy2 to search for it.
+    while (!Robot.m_launcher.isBlockVisible())
+    {
+      int incrementAngle=0;
+      Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+      if (incrementAngle == 180) incrementAngle = 0;
+      else incrementAngle++;
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

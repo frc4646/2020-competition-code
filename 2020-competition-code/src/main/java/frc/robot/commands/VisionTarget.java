@@ -59,10 +59,10 @@ public class VisionTarget extends CommandBase {
     //Code below in execute() will have the robot face the Pixy2 target.
     Robot.m_launcher.run();
 
-    if (Robot.m_launcher.getValues()[0] < xMidPos) { 
+    if (Robot.m_launcher.getPos()[0] < xMidPos) { 
       Robot.m_drivetrain.driveByPercent(-turnSpeed, turnSpeed);
     }
-    else if (Robot.m_launcher.getValues()[0] > xMidPos) {
+    else if (Robot.m_launcher.getPos()[0] > xMidPos) {
       Robot.m_drivetrain.driveByPercent(turnSpeed, -turnSpeed);
     }
 
@@ -79,7 +79,7 @@ public class VisionTarget extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (-tolerance <= Robot.m_launcher.getValues()[0] && Robot.m_launcher.getValues()[0] <= tolerance) {
+    if (-tolerance <= Robot.m_launcher.getPos()[0] && Robot.m_launcher.getPos()[0] <= tolerance) {
       return true;
     }
     return false;

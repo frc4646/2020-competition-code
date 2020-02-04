@@ -115,10 +115,10 @@ public class Launcher extends SubsystemBase {
     }
 
     x = (int)tableX.getNumber(0);
-    y = tableY.getNumber(0);
-    width = tableWidth.getNumber(0);
-    height = tableHeight.getNumber(0); 
-    age = tableAge.getNumber(0);
+    y = (int)tableY.getNumber(0);
+    width = (int)tableWidth.getNumber(0);
+    height = (int)tableHeight.getNumber(0); 
+    age = (int)tableAge.getNumber(0);
     isBlockVisible = tableAge.getBoolean(false);
  }
 
@@ -137,11 +137,6 @@ public class Launcher extends SubsystemBase {
   public void setServos(double servoPan, double servoTilt) {
     pan.set(servoPan);
     tilt.set(servoTilt);
-  }
-
-  public int[] getValues(){
-    int[] values = {x, y, width, height, age};
-    return values;
   }
 
   public int[] getPos()

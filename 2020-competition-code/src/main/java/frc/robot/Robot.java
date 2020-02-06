@@ -112,6 +112,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    //I think this is how it's done?
+    m_drivetrain.driveByPercent(m_robotContainer.leftJoy.getY(), m_robotContainer.rightJoy.getY());
+
   }
 
   @Override

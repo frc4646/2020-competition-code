@@ -17,10 +17,14 @@ package frc.robot;
  */
 public final class Constants {
       //Drivetrain
-  public static final int frontLeftDrivePort = 2;
-  public static final int frontRightDrivePort = 1; 
-  public static final int backLeftDrivePort = 3; 
-  public static final int backRightDrivePort = 0; 
+//   public static final int frontLeftDrivePort = 2;  This stuff is the actual competition ports
+//   public static final int frontRightDrivePort = 1; 
+//   public static final int backLeftDrivePort = 3; 
+//   public static final int backRightDrivePort = 0; 
+  public static final int frontLeftDrivePort = 3;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
+  public static final int frontRightDrivePort = 2; //talon
+  public static final int backLeftDrivePort = 1;   //victor
+  public static final int backRightDrivePort = 0;  //victor
   public static final int intakePort = 0;
   public static final int articulateIntakePort = 0;
   public static final int leftEncoderPort1 = 0;
@@ -42,7 +46,7 @@ public final class Constants {
       //Launcher
 
   public static final int PAN_PORT = 0;
-  public static final int TIlT_PORT = 0;
+  public static final int TILT_PORT = 0;
 
       //Conveyor
   public static final int frontConveyorPort = 0;

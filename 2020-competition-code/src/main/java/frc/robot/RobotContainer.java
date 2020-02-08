@@ -16,10 +16,11 @@ import frc.robot.commands.ReverseConveyer;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.SpinLauncher;
+//import frc.robot.commands.VisionTarget;
 import frc.robot.commands.WinchPull;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -136,6 +137,8 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
+    //leftButton10.whenPressed(new VisionTarget());
+
   }
 
 

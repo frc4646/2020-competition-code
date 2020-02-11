@@ -16,7 +16,7 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.DriveTeleOp;
 import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.analog.adis16448.frc.ADIS16448_IMU.IMUAxis;
+import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -50,7 +50,7 @@ public class Drivetrain extends SubsystemBase {
 
     encoderCountsPerInch = 0;
 
-    gyro = new ADIS16448_IMU();
+    gyro = new ADIS16448_IMU(Axis.kX);
   }
 
   @Override

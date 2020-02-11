@@ -23,7 +23,7 @@ public class SpinLauncher extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //Robot.m_launcher.SpinUp();
+    Robot.m_launcher.SpinUp();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -34,7 +34,7 @@ public class SpinLauncher extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Robot.m_launcher.StopLauncher();
+    Robot.m_launcher.StopLauncher();
   }
 
   // Returns true when the command should end.

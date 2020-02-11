@@ -21,41 +21,41 @@ public final class Constants {
 //   public static final int frontRightDrivePort = 1; 
 //   public static final int backLeftDrivePort = 3; 
 //   public static final int backRightDrivePort = 0; 
-  public static final int frontLeftDrivePort = 1;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
+  public static final int frontLeftDrivePort = 3;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
   public static final int frontRightDrivePort = 2; //talon
-  public static final int backLeftDrivePort = 3;   //victor
+  public static final int backLeftDrivePort = 1;   //victor
   public static final int backRightDrivePort = 0;  //victor
   public static final int intakePort = 0;
-  public static final int articulateIntakePort = 1;
+  public static final int articulateIntakePort = 0;
   public static final int leftEncoderPort1 = 0;
-  public static final int leftEncoderPort2 = 1;
-  public static final int rightEncoderPort1 = 2;
-  public static final int rightEncoderPort2 = 3;
+  public static final int leftEncoderPort2 = 0;
+  public static final int rightEncoderPort1 = 0;
+  public static final int rightEncoderPort2 = 0;
   
 
       //Climber
-  public static final int winch1Spark = 2;
-  public static final int winch2Spark = 3;
-  public static final int elevatorSpark = 4;
-  public static final int liftStringPotPin = 3;
-  public static final int winch1EncoderPort1 = 4;
-  public static final int winch1EncoderPort2 = 5;
-  public static final int winch2EncoderPort1 = 6;
-  public static final int winch2EncoderPort2 = 7;
+  public static final int winch1Spark = 0;
+  public static final int winch2Spark = 0;
+  public static final int elevatorSpark = 0;
+  public static final int liftStringPotPin = 0;
+  public static final int winch1EncoderPort1 = 0;
+  public static final int winch1EncoderPort2 = 0;
+  public static final int winch2EncoderPort1 = 0;
+  public static final int winch2EncoderPort2 = 0;
 
       //Launcher
 
-  public static final int PAN_PORT = 5;
-  public static final int TILT_PORT = 6;
+  public static final int PAN_PORT = 0;
+  public static final int TILT_PORT = 0;
 
       //Conveyor
-  public static final int frontConveyorPort = 7;
-  public static final int rearConveyorPort = 8;
-  public static final int lim1Port = 8;
-  public static final int lim2Port = 9;
-  public static final int lim3Port = 10;
-  public static final int lim4Port = 11;
-  public static final int lim5Port = 12;
+  public static final int frontConveyorPort = 0;
+  public static final int rearConveyorPort = 0;
+  public static final int lim1Port = 0;
+  public static final int lim2Port = 0;
+  public static final int lim3Port = 0;
+  public static final int lim4Port = 0;
+  public static final int lim5Port = 0;
 
 
       //Joysticks

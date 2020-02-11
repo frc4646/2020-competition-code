@@ -7,9 +7,8 @@
 
 package frc.robot.subsystems;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.*;
+import com.ctre.phoenix.motorcontrol.can.*;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -17,6 +16,7 @@ import frc.robot.Constants;
 import frc.robot.commands.DriveTeleOp;
 import com.analog.adis16448.frc.ADIS16448_IMU;
 import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
+//import 
 
 public class Drivetrain extends SubsystemBase {
 
@@ -25,8 +25,8 @@ public class Drivetrain extends SubsystemBase {
   private final VictorSPX backLeftDrive;
   private final VictorSPX backRightDrive;
 
-  private final Encoder rightEncoder;
-  private final Encoder leftEncoder;
+  //private final Encoder rightEncoder;
+  //private final Encoder leftEncoder;
 
   private final int encoderCountsPerInch;
   private final ADIS16448_IMU gyro;
@@ -40,13 +40,27 @@ public class Drivetrain extends SubsystemBase {
     backLeftDrive = new VictorSPX(Constants.backLeftDrivePort);
     backRightDrive = new VictorSPX(Constants.backRightDrivePort);
 
-    rightEncoder = new Encoder(Constants.rightEncoderPort1, Constants.rightEncoderPort2);
-    leftEncoder = new Encoder(Constants.leftEncoderPort1, Constants.leftEncoderPort2);
+    //rightEncoder = new Encoder(Constants.rightEncoderPort1, Constants.rightEncoderPort2);
+    //leftEncoder = new Encoder(Constants.leftEncoderPort1, Constants.leftEncoderPort2);
+
+
+    frontLeftDrive.configFactoryDefault();
+    frontRightDrive.configFactoryDefault();
+    backLeftDrive.configFactoryDefault();
+    backRightDrive.configFactoryDefault();
+
+    frontRightDrive.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    frontLeftDrive.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 
     frontLeftDrive.setInverted(true);
     frontRightDrive.setInverted(false);
     backLeftDrive.setInverted(true);
     backRightDrive.setInverted(false);
+
+    frontLeftDrive.setSensorPhase(true);
+    frontRightDrive.setSensorPhase(false);
+    backLeftDrive.setSensorPhase(true);
+    backRightDrive.setSensorPhase(false);
 
     encoderCountsPerInch = 0;
 
@@ -68,12 +82,12 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void resetEncoders(){
-    leftEncoder.reset();
-    rightEncoder.reset();
+    //leftEncoder.reset();
+    //rightEncoder.reset();
   }
 
   public double[] getDriveEncoderDistance(){
-    return new double[] {leftEncoder.get() / encoderCountsPerInch, rightEncoder.get() / encoderCountsPerInch};
+    return new double[] {frontLeftDrive.getSelectedSensorPosition() / encoderCountsPerInch, frontRightDrive.getSelectedSensorPosition() / encoderCountsPerInch};
   }
 
   public void resetGyro(){

@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.commands.ElevateToHeight;
+import frc.robot.commands.FindTarget;
 import frc.robot.commands.ForwardConveyer;
 import frc.robot.commands.ReverseConveyer;
 import frc.robot.commands.IntakeBall;
@@ -19,7 +20,7 @@ import frc.robot.commands.SpinLauncher;
 import frc.robot.commands.WinchPull;
 
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj2.command.button.*;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -136,6 +137,14 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
+     mechButton8.whenPressed(new IntakeBall());
+     mechButton7.whenPressed(new OuttakeBall());
+     mechButton10.whenPressed(new ForwardConveyer());
+     mechButton9.whenPressed(new ReverseConveyer());
+     mechTrigger.whenPressed(new SpinLauncher());
+     mechButton3.whenPressed(new FindTarget());
+     rightButton4.whenPressed(new FindTarget());
+     leftButton4.whenPressed(new FindTarget());
   }
 
 

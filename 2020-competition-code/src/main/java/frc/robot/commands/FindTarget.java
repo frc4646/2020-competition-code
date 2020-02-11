@@ -19,76 +19,84 @@ public class FindTarget extends CommandBase {
   double neutralTilt; 
   double turnSpeed;
   int tolerance;
+  double incrementAngle;
+  enum States{Init, Locate, Center, Done};
+  States states;
+  int count;
 
   public FindTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_launcher);
 
-    neutralPan = 90;
+    neutralPan = 0.5;
     neutralTilt = 0; //Placeholder
     turnSpeed = 0.8;
     tolerance = 2;
+    states = States.Init;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("YO! THE FIND TARGET FILE HAS INITIALIZED!");
-    Robot.m_launcher.setServos(neutralPan, neutralTilt);
-
-    // While the target is not being tracked, pan the Pixy2 to search for it.
-    double incrementAngle1=0;
-    while (!Robot.m_launcher.isBlockVisible())
-    {
-      Robot.m_launcher.setServos(incrementAngle1, neutralTilt);
-      if (incrementAngle1 == 180) incrementAngle1 = 0;
-      else incrementAngle1++;
-    }
-    
-    //Center the Pixy2 to the target.
-    double incrementAngle2=Robot.m_launcher.getServoPos()[0];
-    while (Robot.m_launcher.getPos()[0] + tolerance < Robot.m_launcher.xMidPos)
-    {
-      Robot.m_launcher.setServos(incrementAngle2, neutralTilt);
-      if (incrementAngle2 == 180) incrementAngle2 = 0;
-      else incrementAngle2++;
-    }
-    double incrementAngle3=Robot.m_launcher.getServoPos()[0];
-    while (Robot.m_launcher.getPos()[0] - tolerance > Robot.m_launcher.xMidPos)
-    {
-      Robot.m_launcher.setServos(incrementAngle3, neutralTilt);
-      if (incrementAngle3 == 0) incrementAngle3 = 180;
-      else incrementAngle3--;
-    }
+      System.out.println("State Init running!");
+      Robot.m_launcher.setServos(neutralPan, neutralTilt);
+      states = States.Locate;
+      incrementAngle=0;
+      count = 0;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (!Robot.m_launcher.isBlockVisible()) //Find the Target
+    //TODO: TEST AND LOOK AT COUNT.
+    if (count % 10 == 0)
     {
-      int incrementAngle=0;
-      Robot.m_launcher.setServos(incrementAngle, neutralTilt);
-      if (incrementAngle == 180) incrementAngle = 0;
-      else incrementAngle++;
-    }
-    else //Center the Pixy2 to the Target
-    {
-      while (Robot.m_launcher.getPos()[0] + tolerance < Robot.m_launcher.xMidPos)
+      switch (states)
       {
-        double incrementAngle=Robot.m_launcher.getServoPos()[0];
-        Robot.m_launcher.setServos(incrementAngle, neutralTilt);
-        if (incrementAngle == 180) incrementAngle = 0;
-        else incrementAngle++;
-      }
-      while (Robot.m_launcher.getPos()[0] - tolerance > Robot.m_launcher.xMidPos)
-      {
-        double incrementAngle=Robot.m_launcher.getServoPos()[0];
-        Robot.m_launcher.setServos(incrementAngle, neutralTilt);
-        if (incrementAngle == 180) incrementAngle = 0;
-        else incrementAngle--;
+        case Locate:
+          System.out.println("State Locate running");
+          // While the target is not being tracked, pan the Pixy2 to search for it.
+          if (!Robot.m_launcher.isBlockVisible())
+          {
+            Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+            if (incrementAngle == 1) incrementAngle = 0;
+            else incrementAngle+=0.05;
+          }
+          else {states = States.Center; incrementAngle=Robot.m_launcher.getServoPos()[0];}
+          break;
+
+
+        case Center:
+          System.out.println("State Center running!");
+          //Center the Pixy2 to the target.
+            if (Robot.m_launcher.getPos()[0] + tolerance < Robot.m_launcher.xMidPos)
+            {
+              Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+              if (incrementAngle == 1) incrementAngle = 0;
+              else incrementAngle+=0.05;
+            }
+            else if (Robot.m_launcher.getPos()[0] - tolerance > Robot.m_launcher.xMidPos)
+            {
+              Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+              if (incrementAngle == 0) incrementAngle = 1;
+              else incrementAngle-=0.05;
+            }
+            else { states = States.Done; }
+          break;
+
+          
+        case Done:
+          System.out.println("State Done running!");
+          break;
+
+
+        default:
+            System.out.println("Oh no! An enum switch error! What will we ever do!");
+            break;
+
       }
     }
+    count++;
   }
 
   // Called once the command ends or is interrupted.

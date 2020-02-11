@@ -139,7 +139,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
     //leftButton10.whenPressed(new VisionTarget());
-    leftButton5.whenPressed(new FindTarget());
+    leftButton7.whenPressed(new FindTarget());
   }
 
 

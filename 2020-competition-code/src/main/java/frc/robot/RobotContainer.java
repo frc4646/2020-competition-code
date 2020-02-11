@@ -10,14 +10,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+
 import frc.robot.commands.ElevateToHeight;
 import frc.robot.commands.ForwardConveyer;
 import frc.robot.commands.ReverseConveyer;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.SpinLauncher;
-//import frc.robot.commands.VisionTarget;
 import frc.robot.commands.WinchPull;
+import frc.robot.commands.FindTarget;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -138,7 +139,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
     //leftButton10.whenPressed(new VisionTarget());
-
+    leftButton5.whenPressed(new FindTarget());
   }
 
 

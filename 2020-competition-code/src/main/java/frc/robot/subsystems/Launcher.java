@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.CANSparkMax;
@@ -29,14 +30,14 @@ public class Launcher extends SubsystemBase {
 
   Servo pan, tilt;
 
-  int deviceID;
-  CANSparkMaxLowLevel.MotorType type = CANSparkMaxLowLevel.MotorType.kBrushless;
-  double launchSpeed;
+  //int deviceID;
+  //CANSparkMaxLowLevel.MotorType type = CANSparkMaxLowLevel.MotorType.kBrushless;
+  //double launchSpeed;
 
-  AnalogTrigger opticTrigger;
-  AnalogInput opticInput;
+  //AnalogTrigger opticTrigger;
+  //AnalogInput opticInput;
 
-  final double enableTrigger = 0, disableTrigger = 0;
+  //final double enableTrigger = 0, disableTrigger = 0;
 
 
   NetworkTableInstance pixyInst;
@@ -51,19 +52,19 @@ public class Launcher extends SubsystemBase {
   int x, y, width, height, age;
   boolean isBlockVisible;
 
-  int xMaxPos, yMaxPos, xMidPos, yMidPos;
+  public int xMaxPos, yMaxPos, xMidPos, yMidPos;
 
   public Launcher() {
-    launcherSpark = new CANSparkMax(deviceID, type);
-    launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
-    opticTrigger = new AnalogTrigger(0);
-    opticInput = new AnalogInput(1);
-    opticTrigger = new AnalogTrigger(opticInput);
+    //launcherSpark = new CANSparkMax(deviceID, type);
+    //launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
+    //opticTrigger = new AnalogTrigger(0);
+    //opticInput = new AnalogInput(1);
+    //opticTrigger = new AnalogTrigger(opticInput);
 
-    pan = new Servo(0);
-    tilt = new Servo(1);
+    pan = new Servo(Constants.PAN_PORT);
+    tilt = new Servo(Constants.TILT_PORT);
 
-    opticTrigger.setLimitsVoltage(disableTrigger, enableTrigger);
+    //opticTrigger.setLimitsVoltage(disableTrigger, enableTrigger);
 
     pixyInst = NetworkTableInstance.getDefault();
     pixyTable = pixyInst.getTable("Pixy");
@@ -79,7 +80,6 @@ public class Launcher extends SubsystemBase {
     yMaxPos = 207;
     xMidPos = xMaxPos/2;
     yMidPos = yMaxPos/2;
-
   }
 
   @Override
@@ -129,7 +129,7 @@ public class Launcher extends SubsystemBase {
     age = (int)tableAge.getNumber(0);
     isBlockVisible = tableAge.getBoolean(false);
  }
-
+/*
   public void SpinUp() {
     launcherSpark.set(launchSpeed);
   }
@@ -141,10 +141,15 @@ public class Launcher extends SubsystemBase {
   public boolean isBallInLauncher(){
     return opticTrigger.getTriggerState();
   }
-
+*/
   public void setServos(double servoPan, double servoTilt) {
     pan.set(servoPan);
     tilt.set(servoTilt);
+  }
+
+  public double[] getServoPos() {
+    double[] array = {pan.get(), tilt.get()};
+    return array;
   }
 
   public int[] getPos()

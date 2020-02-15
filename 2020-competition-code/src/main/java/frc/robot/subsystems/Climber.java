@@ -24,7 +24,7 @@ public class Climber extends SubsystemBase {
    */
   
    VictorSPX winchVictor1;
-   VictorSPX winchSpark2;
+   VictorSPX winchVictor2;
    Spark elevatorSpark;
    
    public Encoder winchEncoder1;
@@ -36,13 +36,13 @@ public class Climber extends SubsystemBase {
    public final double MAX_HEIGHT = 0;
    public final double MIN_HEIGHT = 0;
    public final double HOLD_POWER = 0;
-   public final double UP_POWER = 0;
+   public final double UP_POWER = 0.5;
    public final double DOWN_POWER = 0;
-   public final double WINCH_POWER = 0;
+   public final double WINCH_POWER = 0.5;
 
   public Climber() {
     winchVictor1 = new VictorSPX(Constants.winch1Spark);
-    winchSpark2 = new VictorSPX(Constants.winch2Spark);
+    winchVictor2 = new VictorSPX(Constants.winch2Spark);
     elevatorSpark = new Spark(Constants.elevatorSpark);
     
     liftStringPotPin = new AnalogInput(Constants.liftStringPotPin);
@@ -67,8 +67,8 @@ public class Climber extends SubsystemBase {
   }
 
   public void WinchTeleOp() {
-    winchVictor1.set(ControlMode.PercentOutput, 0.5);
-    winchSpark2.set(ControlMode.PercentOutput, 0.5);
+    winchVictor1.set(ControlMode.PercentOutput, WINCH_POWER);
+    winchVictor2.set(ControlMode.PercentOutput, WINCH_POWER);
   }
 
   public void ElevatorUp(double speed) {
@@ -80,12 +80,12 @@ public class Climber extends SubsystemBase {
 
   public void WinchPull() {
     winchVictor1.set(ControlMode.PercentOutput,WINCH_POWER);
-    winchSpark2.set(ControlMode.PercentOutput,WINCH_POWER);
+    winchVictor2.set(ControlMode.PercentOutput,WINCH_POWER);
   }
 
   public void winchStop() {
     winchVictor1.set(ControlMode.PercentOutput,0);
-    winchSpark2.set(ControlMode.PercentOutput,0);
+    winchVictor2.set(ControlMode.PercentOutput,0);
   }
 
   public double GetLiftHeight() {

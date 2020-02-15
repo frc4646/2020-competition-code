@@ -40,9 +40,9 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
 
     m_drivetrain = new Drivetrain();
-    m_conveyor = new Conveyor();
-    m_climber = new Climber();
-    m_intake = new Intake();
+    //m_conveyor = new Conveyor();
+    //m_climber = new Climber();
+    //m_intake = new Intake();
     m_launcher = new Launcher();
 
 
@@ -112,6 +112,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void teleopPeriodic() {
+    //I think this is how it's done?
+
   }
 
   @Override

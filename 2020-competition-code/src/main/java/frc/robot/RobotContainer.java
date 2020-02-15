@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj2.command.Command;
+
 import frc.robot.commands.ElevateToHeight;
 import frc.robot.commands.FindTarget;
 import frc.robot.commands.ForwardConveyer;
@@ -18,6 +19,7 @@ import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.SpinLauncher;
 import frc.robot.commands.WinchPull;
+import frc.robot.commands.FindTarget;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;

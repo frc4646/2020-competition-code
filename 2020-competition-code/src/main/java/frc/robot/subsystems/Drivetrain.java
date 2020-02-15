@@ -63,7 +63,7 @@ public class Drivetrain extends SubsystemBase {
 
     encoderCountsPerInch = 0;
 
-    gyro = new ADIS16448_IMU(Axis.kX);
+    gyro = new ADIS16448_IMU();
   }
 
   @Override

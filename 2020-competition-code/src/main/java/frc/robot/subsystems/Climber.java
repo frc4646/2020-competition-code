@@ -9,6 +9,10 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
+
+import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
@@ -18,9 +22,9 @@ public class Climber extends SubsystemBase {
   /**
    * Creates a new Climber.
    */
-
-   Spark winchSpark1;
-   Spark winchSpark2;
+  
+   VictorSPX winchVictor1;
+   VictorSPX winchSpark2;
    Spark elevatorSpark;
    
    public Encoder winchEncoder1;
@@ -37,8 +41,8 @@ public class Climber extends SubsystemBase {
    public final double WINCH_POWER = 0;
 
   public Climber() {
-    winchSpark1 = new Spark(Constants.winch1Spark);
-    winchSpark2 = new Spark(Constants.winch2Spark);
+    winchVictor1 = new VictorSPX(Constants.winch1Spark);
+    winchSpark2 = new VictorSPX(Constants.winch2Spark);
     elevatorSpark = new Spark(Constants.elevatorSpark);
     
     liftStringPotPin = new AnalogInput(Constants.liftStringPotPin);
@@ -63,8 +67,8 @@ public class Climber extends SubsystemBase {
   }
 
   public void WinchTeleOp() {
-    winchSpark1.set(0.5);
-    winchSpark2.set(0.5);
+    winchVictor1.set(ControlMode.PercentOutput, 0.5);
+    winchSpark2.set(ControlMode.PercentOutput, 0.5);
   }
 
   public void ElevatorUp(double speed) {
@@ -75,13 +79,13 @@ public class Climber extends SubsystemBase {
   }
 
   public void WinchPull() {
-    winchSpark1.set(WINCH_POWER);
-    winchSpark2.set(WINCH_POWER);
+    winchVictor1.set(ControlMode.PercentOutput,WINCH_POWER);
+    winchSpark2.set(ControlMode.PercentOutput,WINCH_POWER);
   }
 
   public void winchStop() {
-    winchSpark1.set(0);
-    winchSpark2.set(0);
+    winchVictor1.set(ControlMode.PercentOutput,0);
+    winchSpark2.set(ControlMode.PercentOutput,0);
   }
 
   public double GetLiftHeight() {

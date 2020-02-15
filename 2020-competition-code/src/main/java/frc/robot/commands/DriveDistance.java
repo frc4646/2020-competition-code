@@ -14,27 +14,26 @@ public class DriveDistance extends CommandBase {
   /**
    * Creates a new DriveDistance.
    */
-  double driveInches;
+  int driveInches;
   double leftSpeed = 0.8, rightSpeed = 0.8;
   //YEEEEEET (Added as per Dave's Request)
-  public DriveDistance(double inches) {
+  public DriveDistance(int inches) {
     // Use addRequirements() here to declare subsystem dependencies.
     // cartesian; positive x is to the right
     addRequirements(Robot.m_drivetrain);
     driveInches = inches;
-
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_drivetrain.resetEncoders();
+    Robot.m_drivetrain.driveByEncoderInches(driveInches, driveInches);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_drivetrain.driveByPercent(leftSpeed, rightSpeed);
+    
   }
 
   // Called once the command ends or is interrupted.
@@ -46,11 +45,6 @@ public class DriveDistance extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(Robot.m_drivetrain.getDriveEncoderDistance()[0] >= driveInches || 
-       Robot.m_drivetrain.getDriveEncoderDistance()[1] >= driveInches) {
-      return true;
-    }
-
     return false;
   }
 }

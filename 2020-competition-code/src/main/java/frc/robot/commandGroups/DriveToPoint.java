@@ -24,7 +24,7 @@ public class DriveToPoint extends SequentialCommandGroup {
     super();
     
     double angle = Math.atan(Y/X);
-    double hyp = Math.sqrt((X*X) + (Y*Y));
+    int hyp = (int)(Math.sqrt((X*X) + (Y*Y)));
 
     addCommands(
       

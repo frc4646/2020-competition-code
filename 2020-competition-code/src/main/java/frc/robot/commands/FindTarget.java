@@ -23,21 +23,24 @@ public class FindTarget extends CommandBase {
   enum States{Init, Locate, Center, Done};
   States states;
   int count;
+  boolean isGoingRight;
 
   public FindTarget() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_launcher);
-
-    neutralPan = 0.5;
-    neutralTilt = 0; //Placeholder
-    turnSpeed = 0.8;
-    tolerance = 2;
-    states = States.Init;
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+      Robot.m_launcher.startPixy2();
+      neutralPan = 0;
+      neutralTilt = 0; //Placeholder
+      turnSpeed = 0.8;
+      tolerance = 2;
+      isGoingRight = true;
+      states = States.Init;
+
       System.out.println("State Init running!");
       Robot.m_launcher.setServos(neutralPan, neutralTilt);
       states = States.Locate;
@@ -58,16 +61,31 @@ public class FindTarget extends CommandBase {
           // While the target is not being tracked, pan the Pixy2 to search for it.
           if (!Robot.m_launcher.isBlockVisible())
           {
-            Robot.m_launcher.setServos(incrementAngle, neutralTilt);
-            if (incrementAngle == 1) incrementAngle = 0;
-            else incrementAngle+=0.05;
+            if (isGoingRight)
+            {
+              if (incrementAngle >= 1) isGoingRight = false;
+              else 
+              {
+                incrementAngle+=0.05; 
+                Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+              }
+            }
+            else
+            {
+              if (incrementAngle <= 0) isGoingRight = true;
+              else 
+              {
+                incrementAngle-=0.05; 
+                Robot.m_launcher.setServos(incrementAngle, neutralTilt);
+              }
+            }
           }
           else {states = States.Center; incrementAngle=Robot.m_launcher.getServoPos()[0];}
           break;
 
 
         case Center:
-          System.out.println("State Center running!");
+          /*System.out.println("State Center running!");
           //Center the Pixy2 to the target.
             if (Robot.m_launcher.getPos()[0] + tolerance < Robot.m_launcher.xMidPos)
             {
@@ -81,12 +99,13 @@ public class FindTarget extends CommandBase {
               if (incrementAngle == 0) incrementAngle = 1;
               else incrementAngle-=0.05;
             }
-            else { states = States.Done; }
+            else {*/ states = States.Done; //}
           break;
 
           
         case Done:
           System.out.println("State Done running!");
+          Robot.m_launcher.stopPixy2();
           break;
 
 
@@ -102,6 +121,8 @@ public class FindTarget extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_launcher.stopPixy2();
+    System.out.println("Command done running.");
   }
 
   // Returns true when the command should end.

@@ -13,9 +13,11 @@ import com.ctre.phoenix.motorcontrol.can.*;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 import frc.robot.commands.DriveTeleOp;
-import com.analog.adis16448.frc.ADIS16448_IMU;
-import com.analog.adis16448.frc.ADIS16448_IMU.Axis;
-//import 
+
+import edu.wpi.first.wpilibj.SPI;
+import com.analog.adis16470.frc.ADIS16470_IMU;
+import com.analog.adis16470.frc.ADIS16470_IMU.IMUAxis;
+import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
 
 public class Drivetrain extends SubsystemBase {
 
@@ -28,7 +30,7 @@ public class Drivetrain extends SubsystemBase {
   //private final Encoder leftEncoder;
 
   private final int encoderCountsPerInch;
-  private final ADIS16448_IMU gyro;
+  private final ADIS16470_IMU imu;
 
   /**
    * Creates a new Drivetrain.
@@ -63,7 +65,7 @@ public class Drivetrain extends SubsystemBase {
 
     encoderCountsPerInch = 0;
 
-    gyro = new ADIS16448_IMU();
+    imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
   }
 
   @Override
@@ -76,13 +78,19 @@ public class Drivetrain extends SubsystemBase {
   {
     frontLeftDrive.set(ControlMode.PercentOutput, leftSpeed);
     frontRightDrive.set(ControlMode.PercentOutput, rightSpeed);
-    backLeftDrive.set(ControlMode.PercentOutput, leftSpeed);
-    backRightDrive.set(ControlMode.PercentOutput, rightSpeed);
+    backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
+    backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
   }
 
-  public void resetEncoders(){
-    //leftEncoder.reset();
-    //rightEncoder.reset();
+  //TODO: NEED FRC CHARACTERIZATION TOOL TO SET PID VALUES!!!
+  public void driveByEncoderInches(int leftInches, int rightInches)
+  {
+    int leftCount = leftInches * encoderCountsPerInch;
+    int rightCount = rightInches * encoderCountsPerInch;
+    frontLeftDrive.set(ControlMode.Position, leftCount);
+    frontRightDrive.set(ControlMode.Position, rightCount);
+    backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
+    backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
   }
 
   public double[] getDriveEncoderDistance(){
@@ -90,10 +98,10 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void resetGyro(){
-    gyro.calibrate();
+    imu.calibrate();
   }
   public double getAngle(){
-    return gyro.getAngle();
+    return imu.getAngle();
   }
 
 }

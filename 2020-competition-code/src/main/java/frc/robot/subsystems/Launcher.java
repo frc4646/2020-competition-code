@@ -49,10 +49,11 @@ public class Launcher extends SubsystemBase {
   NetworkTableEntry tableAge;
   NetworkTableEntry tableVisible;
 
-  int x, y, width, height, age;
+  double x, y, width, height, age;
   boolean isBlockVisible;
+  boolean isPixyRunning;
 
-  public int xMaxPos, yMaxPos, xMidPos, yMidPos;
+  public float xMaxPos, yMaxPos, xMidPos, yMidPos;
 
   public Launcher() {
     //launcherSpark = new CANSparkMax(deviceID, type);
@@ -80,16 +81,16 @@ public class Launcher extends SubsystemBase {
     yMaxPos = 207;
     xMidPos = xMaxPos/2;
     yMidPos = yMaxPos/2;
+    isPixyRunning = false;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    if (isPixyRunning) run();
   }
 
   public void run() {
-    pixyInst.startClientTeam(4646);
-    
     pixyTable.addEntryListener("x", (table, key, entry, value, flags) -> {
        System.out.println("X changed value: " + value.getValue());
     }, EntryListenerFlags.kNew | EntryListenerFlags.kUpdate);
@@ -122,11 +123,11 @@ public class Launcher extends SubsystemBase {
        return;
     }
 
-    x = (int)tableX.getNumber(0);
-    y = (int)tableY.getNumber(0);
-    width = (int)tableWidth.getNumber(0);
-    height = (int)tableHeight.getNumber(0); 
-    age = (int)tableAge.getNumber(0);
+    x = tableX.getDouble(0);
+    y = tableY.getDouble(0);
+    width = tableWidth.getDouble(0);
+    height = tableHeight.getDouble(0); 
+    age = tableAge.getDouble(0);
     isBlockVisible = tableAge.getBoolean(false);
  }
 /*
@@ -152,19 +153,19 @@ public class Launcher extends SubsystemBase {
     return array;
   }
 
-  public int[] getPos()
+  public double[] getPos()
   {
-    int[] pos = new int[]{x, y};
+    double[] pos = new double[]{x, y};
     return pos;
   }
 
-  public int[] getSize()
+  public double[] getSize()
   {
-    int[] size = new int[]{width, height};
+    double[] size = new double[]{width, height};
     return size;
   }
 
-  public int getAge()
+  public double getAge()
   {
     return age;
   }
@@ -174,5 +175,17 @@ public class Launcher extends SubsystemBase {
    */
   public boolean isBlockVisible() {
     return isBlockVisible;
+  }
+
+  public void startPixy2()
+  {
+    pixyInst.startClientTeam(4646);
+    isPixyRunning = true;
+  }
+
+  public void stopPixy2()
+  {
+    isPixyRunning = false;
+    pixyInst.close();
   }
 }

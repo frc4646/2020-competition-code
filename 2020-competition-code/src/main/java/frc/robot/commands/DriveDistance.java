@@ -15,7 +15,6 @@ public class DriveDistance extends CommandBase {
    * Creates a new DriveDistance.
    */
   int driveInches;
-  double leftSpeed = 0.8, rightSpeed = 0.8;
   //YEEEEEET (Added as per Dave's Request)
   public DriveDistance(int inches) {
     // Use addRequirements() here to declare subsystem dependencies.

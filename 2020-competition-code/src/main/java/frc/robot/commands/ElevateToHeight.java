@@ -15,14 +15,12 @@ public class ElevateToHeight extends CommandBase {
    * Creates a new ElevatorUp.
    */
   private double wantedHeight;
-  private double speed;
   private double tolerance;
 
   public ElevateToHeight(double inchesY) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_climber);
     wantedHeight = inchesY;
-    speed = .5f;
     tolerance = .5f;
   }
 
@@ -30,7 +28,6 @@ public class ElevateToHeight extends CommandBase {
   @Override
   public void initialize() {
     System.out.printf("Intialize%f\n", wantedHeight);
-    Robot.m_climber.ElevatorUp(speed);
 
     if (Robot.m_climber.GetLiftHeight() < wantedHeight)
     {

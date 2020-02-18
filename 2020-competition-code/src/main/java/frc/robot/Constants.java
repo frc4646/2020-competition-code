@@ -36,7 +36,7 @@ public final class Constants {
       //Climber
   public static final int winch1Spark = 2;
   public static final int winch2Spark = 3;
-  public static final int elevatorSpark = 4;
+  public static final int elevatorSpark = 0;
   public static final int liftStringPotPin = 3;
   public static final int winch1EncoderPort1 = 4;
   public static final int winch1EncoderPort2 = 5;

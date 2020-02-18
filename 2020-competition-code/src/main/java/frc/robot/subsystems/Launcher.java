@@ -7,14 +7,13 @@
 
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.AnalogTrigger;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 import com.revrobotics.CANSparkMaxLowLevel;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANEncoder;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
@@ -26,18 +25,16 @@ public class Launcher extends SubsystemBase {
   /**
    * Creates a new Lawn Chair.
    */
-  CANSparkMax launcherSpark;
+  CANSparkMax launcherSpark1;
+  CANSparkMax launcherSpark2;
+  CANEncoder launcherEncoder;
 
   Servo pan, tilt;
 
   //int deviceID;
   //CANSparkMaxLowLevel.MotorType type = CANSparkMaxLowLevel.MotorType.kBrushless;
-  //double launchSpeed;
-
-  //AnalogTrigger opticTrigger;
-  //AnalogInput opticInput;
-
-  //final double enableTrigger = 0, disableTrigger = 0;
+  double launchSpeed;
+  double encoderCountsPerInch;
 
 
   NetworkTableInstance pixyInst;
@@ -56,16 +53,14 @@ public class Launcher extends SubsystemBase {
   public float xMaxPos, yMaxPos, xMidPos, yMidPos;
 
   public Launcher() {
-    //launcherSpark = new CANSparkMax(deviceID, type);
-    //launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
-    //opticTrigger = new AnalogTrigger(0);
-    //opticInput = new AnalogInput(1);
-    //opticTrigger = new AnalogTrigger(opticInput);
+    launcherSpark1 = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
+    launcherSpark2 = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushless);
+    launcherSpark2.follow(launcherSpark1);
+    launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
+    launcherEncoder = launcherSpark1.getEncoder();
 
     pan = new Servo(Constants.PAN_PORT);
     tilt = new Servo(Constants.TILT_PORT);
-
-    //opticTrigger.setLimitsVoltage(disableTrigger, enableTrigger);
 
     pixyInst = NetworkTableInstance.getDefault();
     pixyTable = pixyInst.getTable("Pixy");
@@ -130,19 +125,10 @@ public class Launcher extends SubsystemBase {
     age = tableAge.getDouble(0);
     isBlockVisible = tableAge.getBoolean(false);
  }
-/*
-  public void SpinUp() {
-    launcherSpark.set(launchSpeed);
-  }
+  
   public void StopLauncher() {
-    launcherSpark.set(0);
+    launcherSpark1.set(0);
   }
-
-
-  public boolean isBallInLauncher(){
-    return opticTrigger.getTriggerState();
-  }
-*/
   public void setServos(double servoPan, double servoTilt) {
     pan.set(servoPan);
     tilt.set(servoTilt);
@@ -188,4 +174,13 @@ public class Launcher extends SubsystemBase {
     isPixyRunning = false;
     pixyInst.close();
   }
+
+  public double getSpeed() {
+    return launcherEncoder.getVelocity();
+  }
+  
+  public void setSpeed(double speed){
+    launcherSpark1.set(speed);
+  }
+
 }

@@ -25,8 +25,11 @@ public final class Constants {
   public static final int frontRightDrivePort = 2; //talon
   public static final int backLeftDrivePort = 3;   //victor
   public static final int backRightDrivePort = 0;  //victor
-  public static final int intakePort = 0;
-  public static final int articulateIntakePort = 1;
+
+
+      //Intake
+  public static final int intakePort = 2;
+  public static final int articulateIntakePort = 4;
   public static final int leftEncoderPort1 = 0;
   public static final int leftEncoderPort2 = 1;
   public static final int rightEncoderPort1 = 2;
@@ -42,15 +45,15 @@ public final class Constants {
   public static final int winch1EncoderPort2 = 5;
   public static final int winch2EncoderPort1 = 6;
   public static final int winch2EncoderPort2 = 7;
-
+  
       //Launcher
 
   public static final int PAN_PORT = 5;
   public static final int TILT_PORT = 6;
 
       //Conveyor
-  public static final int frontConveyorPort = 7;
-  public static final int rearConveyorPort = 8;
+  public static final int frontConveyorPort = 1;
+  public static final int rearConveyorPort = 3;
   public static final int lim1Port = 8;
   public static final int lim2Port = 9;
   public static final int lim3Port = 10;

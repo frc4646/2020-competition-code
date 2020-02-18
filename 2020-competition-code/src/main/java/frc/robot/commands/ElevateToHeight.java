@@ -31,11 +31,11 @@ public class ElevateToHeight extends CommandBase {
 
     if (Robot.m_climber.GetLiftHeight() < wantedHeight)
     {
-      Robot.m_climber.ElevatorUp(Robot.m_climber.UP_POWER);
+      Robot.m_climber.ElevateBySpeed(Robot.m_climber.UP_POWER);
     }
     else
     {
-      Robot.m_climber.ElevatorUp(Robot.m_climber.DOWN_POWER);
+      Robot.m_climber.ElevateBySpeed(Robot.m_climber.DOWN_POWER);
     }
   }
 

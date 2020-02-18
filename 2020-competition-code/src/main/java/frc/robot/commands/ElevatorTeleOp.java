@@ -27,11 +27,13 @@ public class ElevatorTeleOp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.m_climber.ElevateBySpeed(Robot.m_robotContainer.getMechJoyY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_climber.HoldHeight();
   }
 
   // Returns true when the command should end.

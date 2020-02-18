@@ -16,7 +16,7 @@ import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.Encoder;
-
+import frc.robot.commands.ElevatorTeleOp;
 
 public class Climber extends SubsystemBase {
   /**
@@ -55,6 +55,7 @@ public class Climber extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    setDefaultCommand(new ElevatorTeleOp());
   }
 
   public void ElevatorTeleOp() {
@@ -71,7 +72,8 @@ public class Climber extends SubsystemBase {
     winchVictor2.set(ControlMode.PercentOutput, WINCH_POWER);
   }
 
-  public void ElevatorUp(double speed) {
+  //Goes in both directions
+  public void ElevateBySpeed(double speed) {
     elevatorSpark.set(speed);
   }
   public void HoldHeight() {

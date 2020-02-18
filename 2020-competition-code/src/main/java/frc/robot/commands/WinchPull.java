@@ -16,10 +16,10 @@ public class WinchPull extends CommandBase {
    */
   private double targetCounts;
 
-  public WinchPull(double count) {
+  public WinchPull() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_climber);
-    targetCounts = count;
+    targetCounts = 100; //Placeholder
   }
 
   // Called when the command is initially scheduled.

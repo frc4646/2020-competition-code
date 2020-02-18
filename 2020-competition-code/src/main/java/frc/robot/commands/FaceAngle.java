@@ -17,11 +17,17 @@ public class FaceAngle extends CommandBase {
 
   private double wantedAngle;
   private boolean isWantedAngle;
+  private double tolerance;
+  private double leftPower;
+  private double rightPower;
 
   public FaceAngle(double degree) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_drivetrain);
     wantedAngle = degree;
+    tolerance = 2.5;
+    leftPower = 0.5f;
+    rightPower = 0.5f;
   }
 
   // Called when the command is initially scheduled.
@@ -36,13 +42,13 @@ public class FaceAngle extends CommandBase {
   public void execute() {
     double gyroAngle = Robot.m_drivetrain.getAngle();
 
-    if (gyroAngle - 2.5f < wantedAngle) //If gyro angle is less than the wanted angle:
+    if (gyroAngle - tolerance < wantedAngle) //If gyro angle is less than the wanted angle:
     {
-      Robot.m_drivetrain.driveByPercent(0.5f, -0.5f); //Turn right
+      Robot.m_drivetrain.driveByPercent(leftPower, -rightPower); //Turn right
     }
-    else if (gyroAngle + 2.5f > wantedAngle) //If gyro angle is greater than the wanted angle:
+    else if (gyroAngle + tolerance > wantedAngle) //If gyro angle is greater than the wanted angle:
     {
-      Robot.m_drivetrain.driveByPercent(-0.5f, 0.5f); //Turn left
+      Robot.m_drivetrain.driveByPercent(-leftPower, rightPower); //Turn left
     }
     else
     {

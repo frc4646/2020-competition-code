@@ -22,17 +22,18 @@ public class IntakeBall extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_intake.IntakeBall();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.m_intake.IntakeBall();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_intake.StopIntake();
   }
 
   // Returns true when the command should end.

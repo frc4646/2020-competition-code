@@ -66,12 +66,13 @@ public class Drivetrain extends SubsystemBase {
     encoderCountsPerInch = 0;
 
     imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
+
+    setDefaultCommand(new DriveTeleOp());
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    setDefaultCommand(new DriveTeleOp());
   }
 
   public void driveByPercent(double leftSpeed, double rightSpeed)

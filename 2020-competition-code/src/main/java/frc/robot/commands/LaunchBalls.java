@@ -10,13 +10,16 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class WinchTeleOp extends CommandBase {
+public class LaunchBalls extends CommandBase {
   /**
-   * Creates a new WinchTeleOp.
+   * Creates a new SpinLauncher.
    */
-  public WinchTeleOp() {
+  double launcherSpeed = 0.8; //placeholder
+
+  public LaunchBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements((Robot.m_climber));
+    addRequirements(Robot.m_launcher);
+    addRequirements(Robot.m_conveyor);
   }
 
   // Called when the command is initially scheduled.
@@ -27,11 +30,14 @@ public class WinchTeleOp extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.m_conveyor.UpConveyor();
+    Robot.m_launcher.setSpeed(launcherSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_launcher.StopLauncher();
   }
 
   // Returns true when the command should end.

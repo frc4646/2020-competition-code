@@ -24,7 +24,14 @@ public class IndexOne extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_conveyor.UpConveyor();
+    if (currentBalls != 5)
+    {
+      Robot.m_conveyor.UpConveyor();
+    }
+    else
+    {
+      end(true);
+    }
   }
 
   // Called every time the scheduler runs while the command is scheduled.

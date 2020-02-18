@@ -44,7 +44,7 @@ public class Intake extends SubsystemBase {
     intakeSpeed = 1.0;
     outtakeSpeed = -0.8;
     deploySpeed = 0.5;
-    retractSpeed = 0.5;
+    retractSpeed = -0.5;
     deploySeconds = 2.0;
     retractSeconds = 2.0; 
 
@@ -72,15 +72,11 @@ public class Intake extends SubsystemBase {
   public void DeployIntake() {
     //just run it for 2 seconds
     articulateSpark.set(deploySpeed);
-    Timer.delay(deploySeconds);
-    articulateSpark.set(0);
   }
 
   public void RetractIntake() {
     //just run it for 2 seconds
     articulateSpark.set(retractSpeed);
-    Timer.delay(retractSeconds);
-    articulateSpark.set(0);
   }
 
   public boolean isBallInIntake(){

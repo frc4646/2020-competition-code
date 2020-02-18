@@ -17,7 +17,9 @@ import frc.robot.commands.ForwardConveyer;
 import frc.robot.commands.ReverseConveyer;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
-import frc.robot.commands.SpinLauncher;
+import frc.robot.commands.LaunchBalls;
+import frc.robot.commands.DeployIntake;
+import frc.robot.commands.RetractIntake;
 import frc.robot.commands.WinchPull;
 import frc.robot.commands.FindTarget;
 
@@ -139,14 +141,15 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
-     mechButton8.whenPressed(new IntakeBall());
-     mechButton7.whenPressed(new OuttakeBall());
-     mechButton10.whenPressed(new ForwardConveyer());
-     mechButton9.whenPressed(new ReverseConveyer());
-     mechTrigger.whenPressed(new SpinLauncher());
+     mechButton8.whileHeld(new IntakeBall());
+     mechButton7.whileHeld(new OuttakeBall());
+     mechButton10.whileHeld(new ForwardConveyer());
+     mechButton9.whileHeld(new ReverseConveyer());
+     mechTrigger.whileHeld(new LaunchBalls());
      mechButton3.whenPressed(new FindTarget());
-     rightButton4.whenPressed(new FindTarget());
-     leftButton4.whenPressed(new FindTarget());
+     mechButton11.whileHeld(new DeployIntake());
+     mechButton12.whileHeld(new RetractIntake());
+     mechButton6.whileHeld(new WinchPull());
   }
 
 

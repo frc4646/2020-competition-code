@@ -50,12 +50,12 @@ public class Climber extends SubsystemBase {
     winchEncoder1 = new Encoder(Constants.winch1EncoderPort1, Constants.winch1EncoderPort2);
     winchEncoder2 = new Encoder(Constants.winch2EncoderPort1, Constants.winch2EncoderPort2);
 
+    setDefaultCommand(new ElevatorTeleOp());
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    setDefaultCommand(new ElevatorTeleOp());
   }
 
   public void ElevatorTeleOp() {

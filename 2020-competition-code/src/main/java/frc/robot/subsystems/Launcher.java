@@ -53,8 +53,12 @@ public class Launcher extends SubsystemBase {
   public float xMaxPos, yMaxPos, xMidPos, yMidPos;
 
   public Launcher() {
-    launcherSpark1 = new CANSparkMax(7, CANSparkMaxLowLevel.MotorType.kBrushless);
-    launcherSpark2 = new CANSparkMax(8, CANSparkMaxLowLevel.MotorType.kBrushless);
+    launcherSpark1 = new CANSparkMax(Constants.launcherID1, CANSparkMaxLowLevel.MotorType.kBrushless);
+    launcherSpark2 = new CANSparkMax(Constants.launcherID2, CANSparkMaxLowLevel.MotorType.kBrushless);
+
+    launcherSpark1.setInverted(true);
+    launcherSpark2.setInverted(false);
+
     launcherSpark2.follow(launcherSpark1);
     launchSpeed = 0.8; //this is temporary, we'll find the right number through trial and error?
     launcherEncoder = launcherSpark1.getEncoder();

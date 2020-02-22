@@ -37,12 +37,13 @@ public class Intake extends SubsystemBase {
   public Intake() {
     intakeSpark = new Spark(Constants.intakePort);
     articulateSpark = new Spark(Constants.articulateIntakePort);
+    intakeSpark.setInverted(true);
     opticTrigger = new AnalogTrigger(0);
     opticInput = new AnalogInput(1);
     opticTrigger = new AnalogTrigger(opticInput);
 
-    intakeSpeed = 1.0;
-    outtakeSpeed = -0.8;
+    intakeSpeed = 0.5f;
+    outtakeSpeed = -0.5;
     deploySpeed = 0.5;
     retractSpeed = -0.5;
     deploySeconds = 2.0;

@@ -21,10 +21,10 @@ public final class Constants {
 //   public static final int frontRightDrivePort = 1; 
 //   public static final int backLeftDrivePort = 3; 
 //   public static final int backRightDrivePort = 0; 
-  public static final int frontLeftDrivePort = 1;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
-  public static final int frontRightDrivePort = 2; //talon
-  public static final int backLeftDrivePort = 3;   //victor
-  public static final int backRightDrivePort = 0;  //victor
+  public static final int frontLeftDrivePort = 0;  //talon; this stuff is for when I (Prithvi) tested the code on Demobot
+  public static final int frontRightDrivePort = 1; //talon
+  public static final int backLeftDrivePort = 2;   //victor
+  public static final int backRightDrivePort = 3;  //victor
 
 
       //Intake
@@ -37,8 +37,8 @@ public final class Constants {
   
 
       //Climber
-  public static final int winch1Spark = 2;
-  public static final int winch2Spark = 3;
+  public static final int winch1Spark = 4; //Know
+  public static final int winch2Spark = 5; //Know
   public static final int elevatorSpark = 0;
   public static final int liftStringPotPin = 3;
   public static final int winch1EncoderPort1 = 4;
@@ -48,6 +48,8 @@ public final class Constants {
   
       //Launcher
 
+  public static final int launcherID1 = 7; //Known
+  public static final int launcherID2 = 8; //Known
   public static final int PAN_PORT = 5;
   public static final int TILT_PORT = 6;
 

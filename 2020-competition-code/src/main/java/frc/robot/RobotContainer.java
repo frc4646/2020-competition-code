@@ -146,10 +146,10 @@ public class RobotContainer {
      mechButton10.whileHeld(new ForwardConveyer());
      mechButton9.whileHeld(new ReverseConveyer());
      mechTrigger.whileHeld(new LaunchBalls());
-     mechButton3.whenPressed(new FindTarget());
+     //mechButton3.whenPressed(new FindTarget());
      mechButton11.whileHeld(new DeployIntake());
      mechButton12.whileHeld(new RetractIntake());
-     mechButton6.whileHeld(new WinchPull());
+     //mechButton6.whileHeld(new WinchPull());
   }
 
 

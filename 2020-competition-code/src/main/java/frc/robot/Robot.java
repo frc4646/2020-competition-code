@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
+import frc.robot.commands.DriveTeleOp;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -41,7 +42,7 @@ public class Robot extends TimedRobot {
 
     m_drivetrain = new Drivetrain();
     m_conveyor = new Conveyor();
-    m_climber = new Climber();
+    //m_climber = new Climber();
     m_intake = new Intake();
     m_launcher = new Launcher();
 
@@ -105,6 +106,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    CommandScheduler.getInstance().setDefaultCommand(m_drivetrain, new DriveTeleOp());
   }
 
   /**

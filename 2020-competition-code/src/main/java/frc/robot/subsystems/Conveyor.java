@@ -30,6 +30,8 @@ public class Conveyor extends SubsystemBase {
   public Conveyor() {
     frontConveyor = new Spark (Constants.frontConveyorPort);
     rearConveyor = new Spark (Constants.rearConveyorPort);
+    frontConveyor.setInverted(true);
+    rearConveyor.setInverted(true);
     conveyorUpSpeed = 0.5;
     conveyorDownSpeed = -0.3;
   }

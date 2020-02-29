@@ -10,35 +10,31 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class LaunchBalls extends CommandBase {
+public class DriveStraight extends CommandBase {
   /**
-   * Creates a new SpinLauncher.
+   * Creates a new DriveStraight.
    */
-  double launcherSpeed = .8; //placeholder .8
-
-  public LaunchBalls() {
+  public DriveStraight() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.m_launcher);
-    //addRequirements(Robot.m_conveyor);
+    addRequirements(Robot.m_drivetrain);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_drivetrain.driveByPercent(0.0, 0.0);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    //Robot.m_conveyor.UpConveyor();
-    Robot.m_launcher.setSpeed(launcherSpeed);
+    Robot.m_drivetrain.driveByPercent(Robot.m_robotContainer.getRightJoyY(), Robot.m_robotContainer.getRightJoyY());
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Robot.m_conveyor.StopConveyor();
-    Robot.m_launcher.StopLauncher();
+    Robot.m_drivetrain.driveByPercent(0.0, 0.0);
   }
 
   // Returns true when the command should end.

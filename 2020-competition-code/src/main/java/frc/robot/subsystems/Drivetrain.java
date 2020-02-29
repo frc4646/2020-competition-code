@@ -63,6 +63,9 @@ public class Drivetrain extends SubsystemBase {
     backLeftDrive.setSensorPhase(true);
     backRightDrive.setSensorPhase(false);
 
+    backLeftDrive.follow(frontLeftDrive);
+    backRightDrive.follow(frontRightDrive);
+
     encoderCountsPerInch = 0;
 
     //imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
@@ -78,8 +81,8 @@ public class Drivetrain extends SubsystemBase {
   {
     frontLeftDrive.set(ControlMode.PercentOutput, leftSpeed);
     frontRightDrive.set(ControlMode.PercentOutput, rightSpeed);
-    backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
-    backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
+    //backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
+    //backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
   }
 
   //TODO: NEED FRC CHARACTERIZATION TOOL TO SET PID VALUES!!!
@@ -89,8 +92,8 @@ public class Drivetrain extends SubsystemBase {
     int rightCount = rightInches * encoderCountsPerInch;
     frontLeftDrive.set(ControlMode.Position, leftCount);
     frontRightDrive.set(ControlMode.Position, rightCount);
-    backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
-    backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
+    //backLeftDrive.set(ControlMode.Follower, frontLeftDrive.getDeviceID());
+    //backRightDrive.set(ControlMode.Follower, frontRightDrive.getDeviceID());
   }
 
   public double[] getDriveEncoderDistance(){

@@ -13,6 +13,10 @@ import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
 import frc.robot.commands.DriveTeleOp;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.cscore.CvSink;
+import edu.wpi.cscore.CvSource;
+
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
  * each mode, as described in the TimedRobot documentation. If you change the name of this class or
@@ -27,9 +31,10 @@ public class Robot extends TimedRobot {
   public static Climber m_climber;
   public static Intake m_intake;
   public static Launcher m_launcher;
-
   public static RobotContainer m_robotContainer;
 
+  CvSink cvSink;
+  CvSource outputStream;
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -45,9 +50,12 @@ public class Robot extends TimedRobot {
     //m_climber = new Climber();
     m_intake = new Intake();
     m_launcher = new Launcher();
-
-
     m_robotContainer = new RobotContainer();
+
+    CameraServer.getInstance().startAutomaticCapture();
+    cvSink = CameraServer.getInstance().getVideo();
+    outputStream = CameraServer.getInstance().putVideo("Camera", 640, 480);
+    outputStream.setFPS(20);
   }
 
   /**

@@ -22,6 +22,7 @@ import frc.robot.commands.DeployIntake;
 import frc.robot.commands.RetractIntake;
 import frc.robot.commands.WinchPull;
 import frc.robot.commands.FindTarget;
+import frc.robot.commands.DriveStraight;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;
@@ -150,6 +151,7 @@ public class RobotContainer {
      mechButton11.whileHeld(new DeployIntake());
      mechButton12.whileHeld(new RetractIntake());
      //mechButton6.whileHeld(new WinchPull());
+     rightTrigger.whileHeld(new DriveStraight());
   }
 
 

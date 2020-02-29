@@ -15,6 +15,7 @@ import frc.robot.commands.ElevateToHeight;
 import frc.robot.commands.FindTarget;
 import frc.robot.commands.ForwardConveyer;
 import frc.robot.commands.ReverseConveyer;
+import frc.robot.commands.SlowLaunch;
 import frc.robot.commands.IntakeBall;
 import frc.robot.commands.OuttakeBall;
 import frc.robot.commands.LaunchBalls;
@@ -23,6 +24,7 @@ import frc.robot.commands.RetractIntake;
 import frc.robot.commands.WinchPull;
 import frc.robot.commands.FindTarget;
 import frc.robot.commands.DriveStraight;
+import frc.robot.commands.ResetEncodersTest;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.button.*;
@@ -142,6 +144,7 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     // Example : mechButton3.whenPressed(new IntakeBall());
+    rightButton5.whenPressed(new ResetEncodersTest());
      mechButton8.whileHeld(new IntakeBall());
      mechButton7.whileHeld(new OuttakeBall());
      mechButton10.whileHeld(new ForwardConveyer());
@@ -152,6 +155,7 @@ public class RobotContainer {
      mechButton12.whileHeld(new RetractIntake());
      //mechButton6.whileHeld(new WinchPull());
      rightTrigger.whileHeld(new DriveStraight());
+     rightButton10.whileHeld(new SlowLaunch());
   }
 
 

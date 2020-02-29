@@ -123,6 +123,7 @@ public class RobotContainer {
 
         // right stick
         rightTrigger.whileHeld(new DriveStraight());
+        rightButton5.whenPressed(new ResetEncodersTest());
     }
 
     /**

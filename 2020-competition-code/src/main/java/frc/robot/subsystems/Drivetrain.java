@@ -15,6 +15,8 @@ import frc.robot.Constants;
 import frc.robot.commands.DriveTeleOp;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.analog.adis16470.frc.ADIS16470_IMU;
 import com.analog.adis16470.frc.ADIS16470_IMU.IMUAxis;
 import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
@@ -75,6 +77,8 @@ public class Drivetrain extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    SmartDashboard.putNumber("Left Encoder", getDriveEncoderCount()[0]);
+    SmartDashboard.putNumber("Right Encoder", getDriveEncoderCount()[1]);
   }
 
   public void driveByPercent(double leftSpeed, double rightSpeed)
@@ -100,8 +104,18 @@ public class Drivetrain extends SubsystemBase {
     return new double[] {frontLeftDrive.getSelectedSensorPosition() / encoderCountsPerInch, frontRightDrive.getSelectedSensorPosition() / encoderCountsPerInch};
   }
 
+  public int[] getDriveEncoderCount(){
+    return new int[] {frontLeftDrive.getSelectedSensorPosition(), frontRightDrive.getSelectedSensorPosition()};
+  }
+
   public void resetGyro(){
     //imu.calibrate();
+  }
+
+  public void resetEncoders()
+  {
+    frontLeftDrive.setSelectedSensorPosition(0, 0, 10);
+    frontRightDrive.setSelectedSensorPosition(0, 0, 10);
   }
   public double getAngle(){
     //return imu.getAngle();

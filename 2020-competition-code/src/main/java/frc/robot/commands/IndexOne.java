@@ -26,7 +26,7 @@ public class IndexOne extends CommandBase {
   public void initialize() {
     if (currentBalls != 5)
     {
-      Robot.m_conveyor.UpConveyor();
+      //Robot.m_conveyor.UpConveyor();
     }
     else
     {

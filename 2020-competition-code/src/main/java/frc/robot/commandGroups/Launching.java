@@ -9,7 +9,7 @@ package frc.robot.commandGroups;
 
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.WaitCommand;
-import frc.robot.commands.ForwardConveyer;
+import frc.robot.commands.ForwardBottomConveyer;
 import frc.robot.commands.LaunchBalls;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -26,7 +26,7 @@ public class Launching extends ParallelCommandGroup {
     super(
 
       new LaunchBalls(),
-      new ForwardConveyer(),
+      new ForwardBottomConveyer(),
       new WaitCommand(6)
 
     );

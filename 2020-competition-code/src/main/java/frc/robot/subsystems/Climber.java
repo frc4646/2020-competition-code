@@ -58,6 +58,14 @@ public class Climber extends SubsystemBase {
     // This method will be called once per scheduler run
   }
 
+  public void ElevatorUp() {
+    elevatorSpark.set(UP_POWER);
+  }
+
+  public void ElevatorDown() {
+    elevatorSpark.set(DOWN_POWER);
+  }
+
   public void ElevatorTeleOp() {
     elevatorSpark.set(0.5);
   }

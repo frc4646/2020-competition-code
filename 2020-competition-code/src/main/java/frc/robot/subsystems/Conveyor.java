@@ -16,8 +16,8 @@ public class Conveyor extends SubsystemBase {
   /**
    * Creates a new Conveyor.
    */
-  Spark frontConveyor;
-  Spark rearConveyor;
+  Spark topConveyor;
+  Spark bottomConveyor;
   double conveyorUpSpeed;
   double conveyorDownSpeed;
 
@@ -28,27 +28,33 @@ public class Conveyor extends SubsystemBase {
   DigitalInput lim5 = new DigitalInput(Constants.lim5Port);
 
   public Conveyor() {
-    frontConveyor = new Spark (Constants.frontConveyorPort);
-    rearConveyor = new Spark (Constants.rearConveyorPort);
-    frontConveyor.setInverted(true);
-    rearConveyor.setInverted(true);
+    topConveyor = new Spark (Constants.frontConveyorPort);
+    bottomConveyor = new Spark (Constants.rearConveyorPort);
+    topConveyor.setInverted(true);
+    bottomConveyor.setInverted(true);
     conveyorUpSpeed = 0.7;
     conveyorDownSpeed = -0.3;
   }
 
-  public void UpConveyor() {
-    frontConveyor.set(conveyorUpSpeed);
-    rearConveyor.set(conveyorUpSpeed);
+  public void UpTopConveyor() {
+    topConveyor.set(conveyorUpSpeed);
   }
 
-  public void DownConveyor() {
-    frontConveyor.set(conveyorDownSpeed);
-    rearConveyor.set(conveyorDownSpeed);
+  public void DownTopConveyor() {
+    topConveyor.set(conveyorDownSpeed);
+  }
+
+  public void UpBottomConveyor() {
+    bottomConveyor.set(conveyorUpSpeed);
+  }
+
+  public void DownBottomConveyor() {
+    bottomConveyor.set(conveyorDownSpeed);
   }
 
   public void StopConveyor() {
-    frontConveyor.set(0);
-    rearConveyor.set(0);
+    topConveyor.set(0);
+    bottomConveyor.set(0);
   }
 
   public int GetBallsStored() {

@@ -10,11 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class ForwardConveyer extends CommandBase {
+public class ForwardBottomConveyer extends CommandBase {
   /**
    * Creates a new ForwardConveyer.
    */
-  public ForwardConveyer() {
+  public ForwardBottomConveyer() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_conveyor);
   }
@@ -27,7 +27,7 @@ public class ForwardConveyer extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_conveyor.UpConveyor();
+    Robot.m_conveyor.UpBottomConveyor();
   }
 
   // Called once the command ends or is interrupted.

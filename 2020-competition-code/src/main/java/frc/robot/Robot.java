@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.*;
+import frc.robot.commandGroups.*;
 import frc.robot.commands.DriveTeleOp;
 
 import edu.wpi.first.cameraserver.CameraServer;
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   public static Climber m_climber;
   public static Intake m_intake;
   public static Launcher m_launcher;
+  public static DriveToLaunch m_autonomousDriveToLaunch;
   public static RobotContainer m_robotContainer;
 
   CvSink cvSink;
@@ -52,10 +54,14 @@ public class Robot extends TimedRobot {
     m_launcher = new Launcher();
     m_robotContainer = new RobotContainer();
 
+    m_autonomousDriveToLaunch = new DriveToLaunch();
+    
     CameraServer.getInstance().startAutomaticCapture();
     cvSink = CameraServer.getInstance().getVideo();
     outputStream = CameraServer.getInstance().putVideo("Camera", 640, 480);
     outputStream.setFPS(20);
+
+    m_autonomousCommand = m_autonomousDriveToLaunch;
   }
 
   /**

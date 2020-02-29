@@ -22,6 +22,8 @@ public class RetractIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_intake.stopArticulate();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -33,7 +35,7 @@ public class RetractIntake extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_intake.StopIntake();
+    Robot.m_intake.stopArticulate();
   }
 
   // Returns true when the command should end.

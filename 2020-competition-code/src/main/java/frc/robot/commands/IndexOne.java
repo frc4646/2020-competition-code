@@ -18,19 +18,16 @@ public class IndexOne extends CommandBase {
   public IndexOne() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_conveyor);
-    currentBalls = Robot.m_conveyor.GetBallsStored();
+    
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    if (currentBalls != 5)
-    {
-      //Robot.m_conveyor.UpConveyor();
-    }
-    else
-    {
-      end(true);
+    if (!Robot.m_conveyor.isLauncherBallPresent()) {
+      if (!Robot.m_conveyor.isLowBallPresent()) {
+
+      }
     }
   }
 
@@ -49,9 +46,7 @@ public class IndexOne extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Robot.m_conveyor.GetBallsStored() == (currentBalls + 1)) {
-      return true;
-    }
+    
     return false;
   }
 }

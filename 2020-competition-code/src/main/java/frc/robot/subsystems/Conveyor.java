@@ -21,11 +21,9 @@ public class Conveyor extends SubsystemBase {
   double conveyorUpSpeed;
   double conveyorDownSpeed;
 
-  DigitalInput lim1 = new DigitalInput(Constants.lim1Port);
-  DigitalInput lim2 = new DigitalInput(Constants.lim2Port);
-  DigitalInput lim3 = new DigitalInput(Constants.lim3Port);
-  DigitalInput lim4 = new DigitalInput(Constants.lim4Port);
-  DigitalInput lim5 = new DigitalInput(Constants.lim5Port);
+  DigitalInput lowOptic;
+  DigitalInput highOptic;
+  DigitalInput launcherOptic;
 
   public Conveyor() {
     topConveyor = new Spark (Constants.frontConveyorPort);
@@ -34,6 +32,9 @@ public class Conveyor extends SubsystemBase {
     bottomConveyor.setInverted(true);
     conveyorUpSpeed = 0.7;
     conveyorDownSpeed = -0.3;
+    lowOptic = new DigitalInput(Constants.lowOpticPort);
+    highOptic = new DigitalInput(Constants.highOpticPort);
+    launcherOptic = new DigitalInput(Constants.launcherOpticPort);
   }
 
   public void UpTopConveyor() {
@@ -57,25 +58,16 @@ public class Conveyor extends SubsystemBase {
     bottomConveyor.set(0);
   }
 
-  public int GetBallsStored() {
-    if (lim5.get()) {
-      return 5;
-    }
-    if (lim4.get()) {
-      return 4;
-    }
-    if (lim3.get()) {
-      return 3;
-    }
-    if (lim2.get()) {
-      return 2;
-    }
-    if (lim1.get()) {
-      return 1;
-    }
-    else {
-      return 0;
-    }
+  public boolean isLowBallPresent() {
+    return lowOptic.get();
+  }
+
+  public boolean isHighBallPresent() {
+    return highOptic.get();
+  }
+
+  public boolean isLauncherBallPresent() {
+    return launcherOptic.get();
   }
 
   @Override

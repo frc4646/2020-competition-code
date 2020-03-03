@@ -26,9 +26,9 @@ public class DriveToLaunch extends SequentialCommandGroup {
       
       new DriveDistance(105), // Drive to wall of the Power port
 
-      new WaitCommand(2),
+      new WaitCommand(2)
       
-      new Launching() // launch balls in to the power port (Good, Very Good)
+      //new Launching() // launch balls in to the power port (Good, Very Good)
 
     );
   }

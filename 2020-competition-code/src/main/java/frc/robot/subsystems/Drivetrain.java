@@ -15,6 +15,7 @@ import frc.robot.Constants;
 import frc.robot.commands.DriveTeleOp;
 
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.analog.adis16470.frc.ADIS16470_IMU;
@@ -23,25 +24,26 @@ import com.analog.adis16470.frc.ADIS16470_IMU.ADIS16470CalibrationTime;
 
 public class Drivetrain extends SubsystemBase {
 
-  private final TalonSRX frontLeftDrive;
-  private final TalonSRX frontRightDrive;
-  private final VictorSPX backLeftDrive;
-  private final VictorSPX backRightDrive;
+  private final WPI_TalonSRX frontLeftDrive;
+  private final WPI_TalonSRX frontRightDrive;
+  private final WPI_VictorSPX backLeftDrive;
+  private final WPI_VictorSPX backRightDrive;
+  private final DifferentialDrive m_drive;
 
   //private final Encoder rightEncoder;
   //private final Encoder leftEncoder;
 
   private final int encoderCountsPerInch;
-  //private final ADIS16470_IMU imu;
+   private final ADIS16470_IMU imu;
 
   /**
    * Creates a new Drivetrain.
    */
   public Drivetrain() {
-    frontLeftDrive = new TalonSRX(Constants.frontLeftDrivePort);
-    frontRightDrive = new TalonSRX(Constants.frontRightDrivePort);
-    backLeftDrive = new VictorSPX(Constants.backLeftDrivePort);
-    backRightDrive = new VictorSPX(Constants.backRightDrivePort);
+    frontLeftDrive = new WPI_TalonSRX(Constants.frontLeftDrivePort);
+    frontRightDrive = new WPI_TalonSRX(Constants.frontRightDrivePort);
+    backLeftDrive = new WPI_VictorSPX(Constants.backLeftDrivePort);
+    backRightDrive = new WPI_VictorSPX(Constants.backRightDrivePort);
 
     //rightEncoder = new Encoder(Constants.rightEncoderPort1, Constants.rightEncoderPort2);
     //leftEncoder = new Encoder(Constants.leftEncoderPort1, Constants.leftEncoderPort2);
@@ -68,9 +70,12 @@ public class Drivetrain extends SubsystemBase {
     backLeftDrive.follow(frontLeftDrive);
     backRightDrive.follow(frontRightDrive);
 
+
+    m_drive = new DifferentialDrive(frontRightDrive, backLeftDrive);
+
     encoderCountsPerInch = 0;
 
-    //imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
+    imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
     
   }
 
@@ -109,7 +114,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void resetGyro(){
-    //imu.calibrate();
+    imu.calibrate();
   }
 
   public void resetEncoders()
@@ -118,8 +123,19 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.setSelectedSensorPosition(0, 0, 10);
   }
   public double getAngle(){
-    //return imu.getAngle();
-    return 0;
+    return imu.getAngle();
   }
 
+  public void StraightDrive(double speed) {
+    double gyroCurve = getAngle()/90.0;
+	  if (speed > 0) {
+      m_drive.curvatureDrive(speed, gyroCurve, false);
+  	}
+  	else {
+      m_drive.curvatureDrive(speed, gyroCurve, false);
+  	}
+
+  }
+
+  
 }

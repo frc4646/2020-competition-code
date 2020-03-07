@@ -7,8 +7,10 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import edu.wpi.first.wpilibj.Timer;
 
 public class LaunchBalls extends CommandBase {
   /**
@@ -19,25 +21,29 @@ public class LaunchBalls extends CommandBase {
   public LaunchBalls() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_launcher);
-    //addRequirements(Robot.m_conveyor);
+    addRequirements(Robot.m_conveyor);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.m_launcher.setSpeed(launcherSpeed);
+    Timer.delay(2);
+    Robot.m_conveyor.UpTopConveyor();
+    Robot.m_conveyor.UpBottomConveyor();
+
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     //Robot.m_conveyor.UpConveyor();
-    Robot.m_launcher.setSpeed(launcherSpeed);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    //Robot.m_conveyor.StopConveyor();
+    Robot.m_conveyor.StopConveyor();
     Robot.m_launcher.StopLauncher();
   }
 

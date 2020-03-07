@@ -112,18 +112,21 @@ public class RobotContainer {
         mechButton9.whileHeld(new ReverseBottomConveyer());
         mechButton8.whileHeld(new IntakeBall());
         mechButton7.whileHeld(new OuttakeBall());
-        mechButton2.whileHeld(new WinchPull());
 
         // Right Hand
         mechButton3.whileHeld(new DeployIntake());
         mechButton5.whileHeld(new RetractIntake());
         mechButton4.whileHeld(new ElevatorUp());
         mechButton6.whileHeld(new ElevatorDown());
-        mechTrigger.whileHeld(new LaunchBalls());
+        //mechTrigger.whileHeld(new LaunchBalls());
+        mechButton2.whileHeld(new WinchPull());
 
         // right stick
         rightTrigger.whileHeld(new DriveStraight());
         rightButton5.whenPressed(new ResetEncodersTest());
+
+        //left stick
+        leftTrigger.whileHeld(new LaunchBalls());
     }
 
     /**

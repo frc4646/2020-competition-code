@@ -45,10 +45,6 @@ public class Drivetrain extends SubsystemBase {
     backLeftDrive = new WPI_VictorSPX(Constants.backLeftDrivePort);
     backRightDrive = new WPI_VictorSPX(Constants.backRightDrivePort);
 
-    //rightEncoder = new Encoder(Constants.rightEncoderPort1, Constants.rightEncoderPort2);
-    //leftEncoder = new Encoder(Constants.leftEncoderPort1, Constants.leftEncoderPort2);
-
-
     frontLeftDrive.configFactoryDefault();
     frontRightDrive.configFactoryDefault();
     backLeftDrive.configFactoryDefault();

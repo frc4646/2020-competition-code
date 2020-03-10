@@ -106,24 +106,24 @@ public class RobotContainer {
         // Example : mechButton3.whenPressed(new IntakeBall());
 
         // Left Hand
-        mechButton12.whileHeld(new ForwardTopConveyer());
-        mechButton11.whileHeld(new ReverseTopConveyer());
+        mechButton8.whileHeld(new ForwardTopConveyer());
+        mechButton7.whileHeld(new ReverseTopConveyer());
         mechButton10.whileHeld(new ForwardBottomConveyer());
         mechButton9.whileHeld(new ReverseBottomConveyer());
-        mechButton8.whileHeld(new IntakeBall());
-        mechButton7.whileHeld(new OuttakeBall());
+        mechButton12.whileHeld(new IntakeBall());
+        mechButton11.whileHeld(new OuttakeBall());
 
         // Right Hand
-        mechButton3.whileHeld(new DeployIntake());
-        mechButton5.whileHeld(new RetractIntake());
-        mechButton4.whileHeld(new ElevatorUp());
-        mechButton6.whileHeld(new ElevatorDown());
-        //mechTrigger.whileHeld(new LaunchBalls());
-        mechButton2.whileHeld(new WinchPull());
+        mechButton5.whileHeld(new DeployIntake());
+        mechButton3.whileHeld(new RetractIntake());
+        mechButton6.whileHeld(new ElevatorUp());
+        mechButton4.whileHeld(new ElevatorDown());
+        mechButton2.whileHeld(new IndexOne());
 
         // right stick
         rightTrigger.whileHeld(new DriveStraight());
         rightButton5.whenPressed(new ResetEncodersTest());
+        rightButton2.whileHeld(new WinchPull());
 
         //left stick
         leftTrigger.whileHeld(new LaunchBalls());

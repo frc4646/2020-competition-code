@@ -27,10 +27,6 @@ public class LaunchBalls extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_launcher.setSpeed(launcherSpeed);
-    Timer.delay(2);
-    Robot.m_conveyor.UpTopConveyor();
-    Robot.m_conveyor.UpBottomConveyor();
 
   }
 
@@ -38,12 +34,16 @@ public class LaunchBalls extends CommandBase {
   @Override
   public void execute() {
     //Robot.m_conveyor.UpConveyor();
+    Robot.m_launcher.setSpeed(launcherSpeed);
+    Robot.m_conveyor.UpTopConveyor();
+    Robot.m_conveyor.UpBottomConveyor();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_conveyor.StopConveyor();
+    Robot.m_conveyor.StopTopConveyor();
+    Robot.m_conveyor.StopBottomConveyor();
     Robot.m_launcher.StopLauncher();
   }
 

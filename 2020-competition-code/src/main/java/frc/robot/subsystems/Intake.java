@@ -42,10 +42,10 @@ public class Intake extends SubsystemBase {
     opticInput = new AnalogInput(1);
     opticTrigger = new AnalogTrigger(opticInput);
 
-    intakeSpeed = 0.5f;
+    intakeSpeed = 0.5;
     outtakeSpeed = -0.5;
-    deploySpeed = 0.5;
-    retractSpeed = -0.75;
+    deploySpeed = 0.35;
+    retractSpeed = -0.50;
     deploySeconds = 2.0;
     retractSeconds = 2.0; 
 

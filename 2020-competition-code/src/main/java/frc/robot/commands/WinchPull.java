@@ -18,20 +18,19 @@ public class WinchPull extends CommandBase {
 
   public WinchPull() {
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.m_climber);
-    targetCounts = 100; //Placeholder
+    addRequirements(Robot.m_climber); //Placeholder
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_climber.resetEncoders();
-    Robot.m_climber.WinchPull();
+    
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    Robot.m_climber.WinchPull();
   }
 
   // Called once the command ends or is interrupted.
@@ -43,11 +42,6 @@ public class WinchPull extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if((Robot.m_climber.winchEncoder1.get() >= targetCounts) 
-    || (Robot.m_climber.winchEncoder2.get() >= targetCounts)) {
-      return true;
-    }
-  
     return false;
   }
 }

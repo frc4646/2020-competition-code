@@ -18,10 +18,13 @@ public class Conveyor extends SubsystemBase {
    */
   Spark topConveyor;
   Spark bottomConveyor;
-  double conveyorUpSpeed;
-  double conveyorDownSpeed;
+  double topConveyorUpSpeed;
+  double bottomConveyorUpSpeed;
+  double topConveyorDownSpeed;
+  double bottomConveyorDownSpeed;
 
   DigitalInput lowOptic;
+  DigitalInput middleOptic;
   DigitalInput highOptic;
   DigitalInput launcherOptic;
 
@@ -30,36 +33,47 @@ public class Conveyor extends SubsystemBase {
     bottomConveyor = new Spark (Constants.rearConveyorPort);
     topConveyor.setInverted(true);
     bottomConveyor.setInverted(true);
-    conveyorUpSpeed = 0.7;
-    conveyorDownSpeed = -0.3;
+    topConveyorUpSpeed = 0.7;
+    topConveyorDownSpeed = -0.5;
+    bottomConveyorUpSpeed = 0.8; //Was .5
+    bottomConveyorDownSpeed = -0.3;
     lowOptic = new DigitalInput(Constants.lowOpticPort);
+    middleOptic = new DigitalInput(Constants.middleOpticPort);
     highOptic = new DigitalInput(Constants.highOpticPort);
     launcherOptic = new DigitalInput(Constants.launcherOpticPort);
   }
 
   public void UpTopConveyor() {
-    topConveyor.set(conveyorUpSpeed);
+    topConveyor.set(topConveyorUpSpeed);
   }
 
   public void DownTopConveyor() {
-    topConveyor.set(conveyorDownSpeed);
+    topConveyor.set(topConveyorDownSpeed);
   }
 
   public void UpBottomConveyor() {
-    bottomConveyor.set(conveyorUpSpeed);
+    bottomConveyor.set(bottomConveyorUpSpeed);
   }
 
   public void DownBottomConveyor() {
-    bottomConveyor.set(conveyorDownSpeed);
+    bottomConveyor.set(bottomConveyorDownSpeed);
   }
 
-  public void StopConveyor() {
+  public void StopTopConveyor() {
     topConveyor.set(0);
+  }
+
+  public void StopBottomConveyor() {
     bottomConveyor.set(0);
   }
 
   public boolean isLowBallPresent() {
     return lowOptic.get();
+  }
+
+  public boolean isMiddleBallPresent()
+  {
+    return middleOptic.get();
   }
 
   public boolean isHighBallPresent() {
@@ -68,6 +82,18 @@ public class Conveyor extends SubsystemBase {
 
   public boolean isLauncherBallPresent() {
     return launcherOptic.get();
+  }
+  
+  boolean[] getFourPosition()
+  {
+    boolean[] pos = {isLowBallPresent(), isMiddleBallPresent(), isHighBallPresent(), isLauncherBallPresent()};
+    return pos;
+  }
+
+  public boolean getPositions(boolean index1, boolean index2, boolean index3, boolean index4)
+  {
+    boolean[] wantedOnes = {index1, index2, index3, index4};
+    return wantedOnes == getFourPosition();
   }
 
   @Override

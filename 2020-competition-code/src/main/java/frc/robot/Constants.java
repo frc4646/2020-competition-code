@@ -56,7 +56,8 @@ public final class Constants {
       //Conveyor
   public static final int frontConveyorPort = 1;
   public static final int rearConveyorPort = 3;
-  public static final int lowOpticPort = 8;
+  public static final int lowOpticPort = 7;
+  public static final int middleOpticPort = 8;
   public static final int highOpticPort = 9;
   public static final int launcherOpticPort = 10;
 

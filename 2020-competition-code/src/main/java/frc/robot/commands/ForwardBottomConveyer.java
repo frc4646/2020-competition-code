@@ -33,7 +33,7 @@ public class ForwardBottomConveyer extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.m_conveyor.StopConveyor();
+    Robot.m_conveyor.StopBottomConveyor();
   }
 
   // Returns true when the command should end.

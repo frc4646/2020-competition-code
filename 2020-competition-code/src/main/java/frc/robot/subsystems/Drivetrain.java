@@ -34,7 +34,7 @@ public class Drivetrain extends SubsystemBase {
   //private final Encoder leftEncoder;
 
   private final int encoderCountsPerInch;
-   private final ADIS16470_IMU imu;
+   //private final ADIS16470_IMU imu;
 
   /**
    * Creates a new Drivetrain.
@@ -71,7 +71,7 @@ public class Drivetrain extends SubsystemBase {
 
     encoderCountsPerInch = 0;
 
-    imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
+    //imu = new ADIS16470_IMU(IMUAxis.kZ, SPI.Port.kOnboardCS0, ADIS16470CalibrationTime._4s);
     
   }
 
@@ -110,7 +110,7 @@ public class Drivetrain extends SubsystemBase {
   }
 
   public void resetGyro(){
-    imu.calibrate();
+    //imu.calibrate();
   }
 
   public void resetEncoders()
@@ -119,7 +119,7 @@ public class Drivetrain extends SubsystemBase {
     frontRightDrive.setSelectedSensorPosition(0, 0, 10);
   }
   public double getAngle(){
-    return imu.getAngle();
+    return 0.0;//imu.getAngle();
   }
 
   public void StraightDrive(double speed) {
